@@ -6,7 +6,6 @@ What it writes into each repository (working tree only, nothing is committed or 
     catalog-info.yaml          the Backstage descriptor (Component/API entities, annotations the plugins read)
     mkdocs.yml                 the TechDocs site definition (navigation, shared Material settings)
     docs/index.md ...          the pages, split out of the repository's README so nothing has to be written twice
-    docs/stylesheets/extra.css the shared look (copied from this directory)
 
 It is a scaffold, not a build step: after the first run the files are the source of truth and are edited by hand.
 Running it again overwrites generated pages, so do that only on a clean branch and review the diff.
@@ -312,9 +311,6 @@ theme:
     - navigation.top
     - content.code.copy
 
-extra_css:
-  - stylesheets/extra.css
-
 nav:
 {nav_lines}
 """
@@ -379,6 +375,7 @@ spec:
             s.dashboard_tag, f"{s.dashboard_tag}-service-overview")
         ann += [
             f"    grafana/dashboard-selector: \"tags @> '{s.dashboard_tag}'\"",
+            f"    grafana/alert-label-selector: \"service={s.name}\"",
             f"    grafana/overview-dashboard: \"{GRAFANA}/d/{uid}\"",
         ]
         links.append(f'    - {{ url: "{GRAFANA}/d/{uid}", title: Grafana dashboard, icon: dashboard }}')
@@ -420,8 +417,6 @@ def write_service(s: Svc) -> None:
     pages = service_pages(s, repo_dir)
     docs = repo_dir / "docs"
     docs.mkdir(exist_ok=True)
-    (docs / "stylesheets").mkdir(exist_ok=True)
-    shutil.copy(HERE / "extra.css", docs / "stylesheets" / "extra.css")
     nav = []
     for page, ptitle, _ in PAGE_ORDER:
         if page in pages:

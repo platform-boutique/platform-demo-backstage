@@ -31,8 +31,9 @@ auth:
         metadataUrl: ${DEX_ISSUER_URL:-https://dex.platform-demo.test}/.well-known/openid-configuration
         clientId: backstage
         clientSecret: ${BACKSTAGE_OIDC_CLIENT_SECRET}
-        # openid, profile and email are always requested; `groups` is what Dex needs to hand out team membership.
-        additionalScopes: [groups]
+        # openid, profile and email are always requested; `groups` is what Dex needs to hand out team membership and
+        # `offline_access` gets a refresh token, so a browser reload does not mean signing in again.
+        additionalScopes: [groups, offline_access]
         prompt: auto
         # No `signIn.resolvers` here on purpose: the resolver is code (packages/backend/src/modules/dexSignIn.ts). It looks the
         # person up in the catalog by GitHub login first, by email second, and refuses everyone else.

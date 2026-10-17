@@ -1,10 +1,12 @@
-/*
- * Shared look of every platform-demo TechDocs site (copied to docs/stylesheets/extra.css by tools/techdocs/scaffold.py).
+// Generated from tools/techdocs/extra.css by tools/techdocs/sync-style.sh - edit the .css file, not this one.
+export const docsCss = `/*
+ * Shared look of every platform-demo TechDocs site. TechDocs strips <link>/<style> from the documentation itself, so this
+ * stylesheet is injected into the docs' shadow DOM by the portal (packages/app/src/modules/techdocs-style).
  * TechDocs injects Backstage's own palette into the Material theme, so everything below is expressed with the theme's CSS
  * variables and follows the portal's light/dark mode. No external fonts, images or scripts: TechDocs sanitises them.
  */
 
-:root {
+:host {
   --pd-radius: 12px;
   --pd-line: var(--md-default-fg-color--lightest, rgba(127, 127, 127, 0.25));
   --pd-soft: var(--md-code-bg-color, rgba(127, 127, 127, 0.08));
@@ -80,7 +82,7 @@
 }
 .md-typeset table:not([class]) td { padding: 0.65em 0.9em; border-top: 1px solid var(--pd-line); vertical-align: top; }
 .md-typeset table:not([class]) tbody tr:first-child td { border-top: 0; }
-/* key/value tables written as `| | |` have an empty header row: do not draw it */
+/* key/value tables written as \`| | |\` have an empty header row: do not draw it */
 .md-typeset table:not([class]) thead tr:has(th:empty):not(:has(th:not(:empty))) { display: none; }
 .md-typeset table:not([class]) tbody tr:hover { background: var(--pd-soft); }
 
@@ -108,3 +110,4 @@
 .pd-pill--ok { color: #1a7f37; border-color: #1a7f3766; }
 .pd-pill--warn { color: #9a6700; border-color: #9a670066; }
 .pd-pill--no { color: #cf222e; border-color: #cf222e66; }
+`;

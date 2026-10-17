@@ -24,8 +24,7 @@ from scaffold import (ARGOCD, GRAFANA, HERE, ORG, WORKSPACE, fix_links, mk_slug,
 def write_site(repo_dir: Path, repo: str, site_name: str, description: str, pages: dict[str, str],
                nav: list[tuple[str, str]], catalog: str) -> None:
     docs = repo_dir / "docs"
-    (docs / "stylesheets").mkdir(parents=True, exist_ok=True)
-    shutil.copy(HERE / "extra.css", docs / "stylesheets" / "extra.css")
+    docs.mkdir(parents=True, exist_ok=True)
     for name, body in pages.items():
         (docs / name).parent.mkdir(parents=True, exist_ok=True)
         (docs / name).write_text(body)

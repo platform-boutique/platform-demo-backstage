@@ -7605,7 +7605,7 @@ __metadata:
 
 "@platform-boutique/backstage-plugin-hubble@file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz::locator=app%40workspace%3Apackages%2Fapp":
   version: 0.1.0
-  resolution: "@platform-boutique/backstage-plugin-hubble@file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz::hash=c1e7fd&locator=app%40workspace%3Apackages%2Fapp"
+  resolution: "@platform-boutique/backstage-plugin-hubble@file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz::hash=931d57&locator=app%40workspace%3Apackages%2Fapp"
   dependencies:
     "@backstage/core-components": "npm:^0.18.14"
     "@backstage/core-plugin-api": "npm:^1.12.10"
@@ -7619,7 +7619,7 @@ __metadata:
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.30.0
-  checksum: 10c0/24fecd0f02073fe3bb374a95f4a2b553e1d7823ec6918ff891e6a52ac059c5c71cb5794623a6e9231ed541c3c25c119a41b46eb9c0095fb1c8be844f78eb3bc9
+  checksum: 10c0/aa822236477980b28e3b41922084801dc97c2c22f9dfdf2e6744b4471b46690f718c4e42462db8e1c034a3e27b95a0c4683195d6ee3a0914fb33fc253a19287f
   languageName: node
   linkType: hard
 
@@ -7640,7 +7640,7 @@ __metadata:
 
 "@platform-boutique/backstage-plugin-releases@file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz::locator=app%40workspace%3Apackages%2Fapp":
   version: 0.1.0
-  resolution: "@platform-boutique/backstage-plugin-releases@file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz::hash=03db11&locator=app%40workspace%3Apackages%2Fapp"
+  resolution: "@platform-boutique/backstage-plugin-releases@file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz::hash=215ba1&locator=app%40workspace%3Apackages%2Fapp"
   dependencies:
     "@backstage/core-components": "npm:^0.18.14"
     "@backstage/core-plugin-api": "npm:^1.12.10"
@@ -7654,7 +7654,7 @@ __metadata:
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.30.0
-  checksum: 10c0/507d49cf5a15c1cd71e311581c619c7bd00ad45368e3be3eb2c32c9ba9938a70a88fc61cf2d2248a053bfc1fb2082e3f3adc309843cc61ef4ba2bf977260ccc5
+  checksum: 10c0/18e1a4cb52b684b53fb2a4fea48c09f7f31ae390a66f9be093c2bed8ef884f46b88ce78f2a2a41d5e847e86e174f0792fe3973ede40e175e7ab88a4a2279180a
   languageName: node
   linkType: hard
 

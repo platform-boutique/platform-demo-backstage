@@ -18,6 +18,11 @@ app:
     - page:catalog:
         config:
           path: /
+    # The Argo CD and Kyverno *tabs* render their tables in a way that crashes inside the entity tab layout of this Backstage
+    # version (material-table: "scrollWidth of null"); their *cards* on the overview page show the same data and work.
+    - entity-content:argocd/ArgoCdPage: false
+    - entity-content:kyverno-policy-reports/kyverno.reports: false
+    - entity-content:kyverno-policy-reports/kyverno.crossplane-reports: false
 
 organization:
   name: platform-boutique
