@@ -1,0 +1,46 @@
+# Local kind demo, no GitHub: the workspace folder ~/Desktop/platform-demo is mounted read-only into the pod at /workspace
+# (kind/up.sh, WORKSPACE_DIR) and the catalog reads the catalog-info.yaml of every repository from there. TechDocs sources are
+# read from the same files (`backstage.io/techdocs-ref: dir:.` resolves next to the descriptor).
+#
+# Users are listed by hand (catalog/org.yaml) because there is no GitHub organisation to read them from.
+
+catalog:
+  locations:
+    - type: file
+      target: /app/catalog/platform.yaml
+    - type: file
+      target: /app/catalog/org.yaml
+    - type: file
+      target: /workspace/apps/ad-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/cart-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/checkout-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/currency-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/email-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/frontend/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/payment-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/product-catalog-db/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/product-catalog-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/recommendation-service/catalog-info.yaml
+    - type: file
+      target: /workspace/apps/shipping-service/catalog-info.yaml
+    - type: file
+      target: /workspace/deploy/platform-demo-helm/catalog-info.yaml
+    - type: file
+      target: /workspace/platform/platform-demo-workflows/catalog-info.yaml
+    - type: file
+      target: /workspace/platform/platform-demo-observability/catalog-info.yaml
+    - type: file
+      target: /workspace/platform/platform-demo-backstage/catalog-info.yaml
+    - type: file
+      target: /workspace/platform/org-profile/catalog-info.yaml
+    - type: file
+      target: /workspace/docs/catalog-info.yaml

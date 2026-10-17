@@ -1,0 +1,35 @@
+# Production catalog source: everything comes from the GitHub organisation, nothing is listed by hand.
+#  - every repository of the organisation is scanned for /catalog-info.yaml (topics are not required)
+#  - users and teams are read from the organisation (teams become Groups, members become Users named after their login)
+# Needs GITHUB_TOKEN (fine-grained token or, preferred, a GitHub App: see README.md, "GitHub access").
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+catalog:
+  providers:
+    github:
+      platformBoutique:
+        organization: platform-boutique
+        catalogPath: /catalog-info.yaml
+        filters:
+          branch: main
+          repository: '.*'
+        schedule:
+          frequency: { minutes: 15 }
+          timeout: { minutes: 3 }
+          initialDelay: { seconds: 15 }
+    githubOrg:
+      id: platform-boutique
+      githubUrl: https://github.com
+      orgs: [platform-boutique]
+      schedule:
+        frequency: { minutes: 30 }
+        timeout: { minutes: 3 }
+        initialDelay: { seconds: 30 }
+  locations:
+    # Entities that are not tied to one repository (systems, resources, domains). These live in this repository.
+    - type: url
+      target: https://github.com/platform-boutique/platform-demo-backstage/blob/main/catalog/platform.yaml

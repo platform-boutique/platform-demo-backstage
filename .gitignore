@@ -54,3 +54,8 @@ e2e-test-report/
 
 # Cache
 .cache/
+
+# Local overlay for `yarn start` (never committed)
+app-config.dev.yaml
+.env.local
+.local-plugins/

@@ -1,0 +1,3 @@
+# MkDocs toolchain used by the TechDocs generator inside the image. Pinned so a rebuild never changes how the docs look.
+# The theme (Material for MkDocs) comes with mkdocs-techdocs-core; versions follow its constraints.
+mkdocs-techdocs-core==1.7.1

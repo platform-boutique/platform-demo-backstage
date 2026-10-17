@@ -1,72 +1,56 @@
-/*
- * Hi!
- *
- * Note that this is an EXAMPLE Backstage backend. Please check the README.
- *
- * Happy hacking!
- */
-
 import { createBackend } from '@backstage/backend-defaults';
+import { argocdServiceFactory } from '@roadiehq/backstage-plugin-argo-cd-backend';
 
 const backend = createBackend();
 
+// Serves the compiled frontend and the API from one origin
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 
-// scaffolder plugin
-backend.add(import('@backstage/plugin-scaffolder-backend'));
-backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
-backend.add(
-  import('@backstage/plugin-scaffolder-backend-module-notifications'),
-);
+// Authentication: Dex (OpenID Connect) is the only way in. The sign-in resolver is our own module.
+// https://backstage.io/docs/auth/oidc
+backend.add(import('@backstage/plugin-auth-backend'));
+backend.add(import('./modules/dexSignIn'));
 
-// techdocs plugin
+// Software catalog: descriptors from GitHub (production) or the mounted workspace (kind demo)
+// https://backstage.io/docs/features/software-catalog/
+backend.add(import('@backstage/plugin-catalog-backend'));
+backend.add(import('@backstage/plugin-catalog-backend-module-logs'));
+// https://backstage.io/docs/integrations/github/discovery
+backend.add(import('@backstage/plugin-catalog-backend-module-github'));
+// https://backstage.io/docs/integrations/github/org
+backend.add(import('@backstage/plugin-catalog-backend-module-github-org'));
+
+// TechDocs: builds MkDocs sites from the repositories' docs/ folders
+// https://backstage.io/docs/features/techdocs/
 backend.add(import('@backstage/plugin-techdocs-backend'));
 
-// auth plugin
-backend.add(import('@backstage/plugin-auth-backend'));
-// See https://backstage.io/docs/backend-system/building-backends/migrating#the-auth-plugin
-backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
-// See https://backstage.io/docs/auth/guest/provider
+// Kubernetes: read-only view of workloads, plus the proxy the Kyverno plugin uses
+// https://backstage.io/docs/features/kubernetes/
+backend.add(import('@backstage/plugin-kubernetes-backend'));
 
-// catalog plugin
-backend.add(import('@backstage/plugin-catalog-backend'));
-backend.add(
-  import('@backstage/plugin-catalog-backend-module-scaffolder-entity-model'),
-);
+// Argo CD (Roadie): talks to Argo CD's API with a read-only token
+backend.add(argocdServiceFactory);
+backend.add(import('@roadiehq/backstage-plugin-argo-cd-backend'));
 
-// See https://backstage.io/docs/features/software-catalog/configuration#subscribing-to-catalog-errors
-backend.add(import('@backstage/plugin-catalog-backend-module-logs'));
+// Kyverno policy reports (TeraSky): reads PolicyReports through the Kubernetes plugin's proxy
+backend.add(import('@terasky/backstage-plugin-kyverno-policy-reports-backend'));
 
-// permission plugin
+// Permissions: allow-all (every signed-in person may see everything; the portal is read-only for infrastructure).
+// https://backstage.io/docs/permissions/getting-started
 backend.add(import('@backstage/plugin-permission-backend'));
-// See https://backstage.io/docs/permissions/getting-started for how to create your own permission policy
 backend.add(
   import('@backstage/plugin-permission-backend-module-allow-all-policy'),
 );
 
-// search plugin
+// Search over catalog and docs (PostgreSQL full text search)
+// https://backstage.io/docs/features/search/
 backend.add(import('@backstage/plugin-search-backend'));
-
-// search engine
-// See https://backstage.io/docs/features/search/search-engines
 backend.add(import('@backstage/plugin-search-backend-module-pg'));
-
-// search collators
 backend.add(import('@backstage/plugin-search-backend-module-catalog'));
 backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 
-// kubernetes plugin
-backend.add(import('@backstage/plugin-kubernetes-backend'));
-
-// user settings plugin
+// Per-user settings (starred entities, theme)
 backend.add(import('@backstage/plugin-user-settings-backend'));
-
-// notifications and signals plugins
-backend.add(import('@backstage/plugin-notifications-backend'));
-backend.add(import('@backstage/plugin-signals-backend'));
-
-// mcp actions plugin
-backend.add(import('@backstage/plugin-mcp-actions-backend'));
 
 backend.start();
