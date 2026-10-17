@@ -7,8 +7,6 @@ app:
 backend:
   baseUrl: ${APP_BASE_URL}
   listen: ':7007'
-  # Scratch space for the TechDocs generator and for archive downloads.
-  workingDirectory: ${TECHDOCS_CACHE:-/data}/work
   cors:
     origin: ${APP_BASE_URL}
   # Single origin: the backend serves the compiled frontend (app-backend plugin), so there is no CORS in practice.
@@ -33,8 +31,8 @@ auth:
         metadataUrl: ${DEX_ISSUER_URL:-https://dex.platform-demo.test}/.well-known/openid-configuration
         clientId: backstage
         clientSecret: ${BACKSTAGE_OIDC_CLIENT_SECRET}
-        # Scopes asked for in addition to openid; `groups` is what Dex needs to hand out team membership.
-        scope: 'openid profile email groups'
+        # openid, profile and email are always requested; `groups` is what Dex needs to hand out team membership.
+        additionalScopes: [groups]
         prompt: auto
         # No `signIn.resolvers` here on purpose: the resolver is code (packages/backend/src/modules/dexSignIn.ts). It looks the
         # person up in the catalog by GitHub login first, by email second, and refuses everyone else.
@@ -42,5 +40,5 @@ auth:
 techdocs:
   publisher:
     local:
-      # Generated sites; an emptyDir/PVC is mounted here (the image runs with a read-only root filesystem).
+      # Published sites live on a volume mounted at /data (the image runs with a read-only root filesystem).
       publishDirectory: ${TECHDOCS_CACHE:-/data}/docs

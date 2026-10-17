@@ -4923,7 +4923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grpc/grpc-js@npm:^1.10.9, @grpc/grpc-js@npm:^1.11.1":
+"@grpc/grpc-js@npm:^1.10.9, @grpc/grpc-js@npm:^1.11.1, @grpc/grpc-js@npm:^1.13.0":
   version: 1.14.6
   resolution: "@grpc/grpc-js@npm:1.14.6"
   dependencies:
@@ -5982,7 +5982,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kubernetes/client-node@npm:1.4.0":
+"@kubernetes/client-node@npm:1.4.0, @kubernetes/client-node@npm:^1.3.0":
   version: 1.4.0
   resolution: "@kubernetes/client-node@npm:1.4.0"
   dependencies:
@@ -7545,6 +7545,76 @@ __metadata:
   version: 0.3.6
   resolution: "@pkgr/core@npm:0.3.6"
   checksum: 10c0/153f0f4563f505faeba13c733efa0e05e467ce1c6b941055a5fd3b4560da60fbf1dff4b11da0075f034ddda11f2842b90395f60895dde5825875b616edccc11c
+  languageName: node
+  linkType: hard
+
+"@platform-boutique/backstage-plugin-hubble-backend@file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz::locator=backend%40workspace%3Apackages%2Fbackend":
+  version: 0.1.0
+  resolution: "@platform-boutique/backstage-plugin-hubble-backend@file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz::hash=54e833&locator=backend%40workspace%3Apackages%2Fbackend"
+  dependencies:
+    "@backstage/backend-defaults": "npm:^0.18.0"
+    "@backstage/backend-plugin-api": "npm:^1.10.1"
+    "@backstage/errors": "npm:^1.3.1"
+    "@grpc/grpc-js": "npm:^1.13.0"
+    "@grpc/proto-loader": "npm:^0.8.0"
+    express: "npm:^4.17.1"
+    express-promise-router: "npm:^4.1.0"
+  checksum: 10c0/29f3dda65bebd0afa1e2bf3cb066c68a291fbf8a05690fdd5fb73f869382156c19799e7799d619a26434b72b19994982df2f9cfdac77f9fe0315e9d49cf51441
+  languageName: node
+  linkType: hard
+
+"@platform-boutique/backstage-plugin-hubble@file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz::locator=app%40workspace%3Apackages%2Fapp":
+  version: 0.1.0
+  resolution: "@platform-boutique/backstage-plugin-hubble@file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz::hash=c1e7fd&locator=app%40workspace%3Apackages%2Fapp"
+  dependencies:
+    "@backstage/core-components": "npm:^0.18.14"
+    "@backstage/core-plugin-api": "npm:^1.12.10"
+    "@backstage/errors": "npm:^1.3.1"
+    "@backstage/frontend-plugin-api": "npm:^0.18.1"
+    "@backstage/plugin-catalog-react": "npm:^3.0.0"
+    "@backstage/theme": "npm:^0.7.3"
+    "@material-ui/core": "npm:^4.12.2"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.30.0
+  checksum: 10c0/24fecd0f02073fe3bb374a95f4a2b553e1d7823ec6918ff891e6a52ac059c5c71cb5794623a6e9231ed541c3c25c119a41b46eb9c0095fb1c8be844f78eb3bc9
+  languageName: node
+  linkType: hard
+
+"@platform-boutique/backstage-plugin-releases-backend@file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz::locator=backend%40workspace%3Apackages%2Fbackend":
+  version: 0.1.0
+  resolution: "@platform-boutique/backstage-plugin-releases-backend@file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz::hash=49e961&locator=backend%40workspace%3Apackages%2Fbackend"
+  dependencies:
+    "@backstage/backend-defaults": "npm:^0.18.0"
+    "@backstage/backend-plugin-api": "npm:^1.10.1"
+    "@backstage/errors": "npm:^1.3.1"
+    "@kubernetes/client-node": "npm:^1.3.0"
+    express: "npm:^4.17.1"
+    express-promise-router: "npm:^4.1.0"
+    yaml: "npm:^2.8.0"
+  checksum: 10c0/b641d93879f2884a197652eadd29171d43344f4086451ff7dfa9d515b75ff98aa68e927ba777ba94bb0a0a0459e4573c4fb9f5b206ea8f3a6ca9231d3a966b38
+  languageName: node
+  linkType: hard
+
+"@platform-boutique/backstage-plugin-releases@file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz::locator=app%40workspace%3Apackages%2Fapp":
+  version: 0.1.0
+  resolution: "@platform-boutique/backstage-plugin-releases@file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz::hash=03db11&locator=app%40workspace%3Apackages%2Fapp"
+  dependencies:
+    "@backstage/core-components": "npm:^0.18.14"
+    "@backstage/core-plugin-api": "npm:^1.12.10"
+    "@backstage/errors": "npm:^1.3.1"
+    "@backstage/frontend-plugin-api": "npm:^0.18.1"
+    "@backstage/plugin-catalog-react": "npm:^3.0.0"
+    "@backstage/theme": "npm:^0.7.3"
+    "@material-ui/core": "npm:^4.12.2"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.30.0
+  checksum: 10c0/507d49cf5a15c1cd71e311581c619c7bd00ad45368e3be3eb2c32c9ba9938a70a88fc61cf2d2248a053bfc1fb2082e3f3adc309843cc61ef4ba2bf977260ccc5
   languageName: node
   linkType: hard
 
@@ -13280,6 +13350,8 @@ __metadata:
     "@backstage/ui": "npm:^0.18.0"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
+    "@platform-boutique/backstage-plugin-hubble": "file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz"
+    "@platform-boutique/backstage-plugin-releases": "file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz"
     "@playwright/test": "npm:^1.32.3"
     "@roadiehq/backstage-plugin-argo-cd": "npm:^2.13.1"
     "@terasky/backstage-plugin-kyverno-policy-reports": "npm:^1.18.0"
@@ -13906,6 +13978,8 @@ __metadata:
     "@backstage/plugin-search-backend-node": "npm:^1.4.8"
     "@backstage/plugin-techdocs-backend": "npm:^2.3.0"
     "@backstage/plugin-user-settings-backend": "npm:^0.4.7"
+    "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz"
+    "@platform-boutique/backstage-plugin-releases-backend": "file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz"
     "@roadiehq/backstage-plugin-argo-cd-backend": "npm:^4.9.0"
     "@terasky/backstage-plugin-kyverno-policy-reports-backend": "npm:^1.17.0"
     app: "link:../app"
@@ -32502,7 +32576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.0.0, yaml@npm:^2.2.1":
+"yaml@npm:^2.0.0, yaml@npm:^2.2.1, yaml@npm:^2.8.0":
   version: 2.9.1
   resolution: "yaml@npm:2.9.1"
   bin:

@@ -36,6 +36,12 @@ backend.add(import('@roadiehq/backstage-plugin-argo-cd-backend'));
 // Kyverno policy reports (TeraSky): reads PolicyReports through the Kubernetes plugin's proxy
 backend.add(import('@terasky/backstage-plugin-kyverno-policy-reports-backend'));
 
+// Network flows from Hubble Relay (own plugin, platform-demo-backstage-plugin-hubble)
+backend.add(import('@platform-boutique/backstage-plugin-hubble-backend'));
+
+// Release state: what Argo CD runs vs. what the Helm repository declares (own plugin, platform-demo-backstage-plugin-releases)
+backend.add(import('@platform-boutique/backstage-plugin-releases-backend'));
+
 // Permissions: allow-all (every signed-in person may see everything; the portal is read-only for infrastructure).
 // https://backstage.io/docs/permissions/getting-started
 backend.add(import('@backstage/plugin-permission-backend'));

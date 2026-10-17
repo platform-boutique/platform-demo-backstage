@@ -2,12 +2,28 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: platform-demo-backstage
-  description: An example of a Backstage application.
-  # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  title: platform-demo-backstage
+  description: "The developer portal: software catalog, TechDocs, Kubernetes, Argo CD and Kyverno views, single sign-on through Dex."
+  annotations:
+    github.com/project-slug: platform-boutique/platform-demo-backstage
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: backstage
+    backstage.io/kubernetes-namespace: backstage
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=backstage
+    argocd/app-name: dev-backstage
+  tags: [backstage, typescript, portal]
+  links:
+    - { url: "https://github.com/platform-boutique/platform-demo-backstage", title: Repository, icon: github }
+    - { url: "https://backstage.platform-demo.test", title: Portal, icon: web }
+    - { url: "https://argocd.platform-demo.test/applications/argocd/dev-backstage", title: Argo CD, icon: dashboard }
 spec:
   type: website
-  owner: john@example.com
   lifecycle: experimental
+  owner: group:default/maintainers
+  system: developer-portal
+  dependsOn:
+    - resource:default/dex
+    - resource:default/argocd
+    - resource:default/kyverno
+    - resource:default/grafana
+    - resource:default/platform-local-cluster

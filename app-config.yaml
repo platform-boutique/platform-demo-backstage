@@ -42,7 +42,7 @@ backend:
 integrations:
   github:
     - host: github.com
-      # Used by catalog discovery and the TechDocs preparer when a GitHub token or app is configured (app-config.github.yaml).
+      # Used by catalog discovery when a GitHub token or app is configured (app-config.github.yaml).
       token: ${GITHUB_TOKEN}
 
 argocd:
@@ -62,19 +62,28 @@ grafana:
   domain: ${GRAFANA_URL:-https://grafana.platform-demo.test}
   unifiedAlerting: true
 
+hubble:
+  # Hubble Relay's gRPC endpoint (plaintext inside the cluster)
+  relayAddress: ${HUBBLE_RELAY_ADDRESS:-hubble-relay.kube-system.svc.cluster.local:80}
+  maxFlows: 200
+
+releases:
+  argocdNamespace: argocd
+  # Where the desired image of an application is declared (read with Backstage's URL reader; needs the GitHub integration)
+  valuesUrl: https://github.com/platform-boutique/platform-demo-helm/blob/main/envs/{env}/values/{app}.yaml
+  latestTag: true
+
 kyverno:
   enabled: true
   enablePermissions: false
 
 techdocs:
-  # Documentation is built by the Backstage backend (MkDocs is part of the image) and written to disk. Fine for one
-  # replica and a few dozen pages; for more, build in CI with `techdocs-cli generate` and publish to object storage
-  # (docs/techdocs.md, "Scaling out").
-  builder: local
-  generator:
-    runIn: local
+  # Documentation is built OUTSIDE the portal (tools/techdocs/build-docs.sh, in CI with `techdocs-cli generate`) and published
+  # to the storage the portal reads from. The backend never runs MkDocs, so the image stays small and the portal needs no
+  # access to the source repositories to show docs. See docs/techdocs.md.
+  builder: external
   publisher:
-    type: local
+    type: local   # a volume at /data/docs; for AWS: awsS3 (infra/ phase) - only this block changes
 
 auth:
   # Dex is the only way in. Provider details are in app-config.production.yaml.
@@ -88,6 +97,15 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, Domain, Group, User]
   # Locations come from the layers (GitHub discovery or the mounted workspace).
+
+proxy:
+  endpoints:
+    # Grafana API for the Grafana plugin (alerts and the dashboard list). The backend authenticates with a Grafana service account
+    # token (GRAFANA_TOKEN), never with a person's session.
+    '/grafana/api':
+      target: ${GRAFANA_API_URL:-http://grafana.monitoring.svc.cluster.local:3000}
+      headers:
+        Authorization: Bearer ${GRAFANA_TOKEN}
 
 kubernetes:
   # Read-only view of the cluster the portal runs in. Objects are matched with the annotation backstage.io/kubernetes-id

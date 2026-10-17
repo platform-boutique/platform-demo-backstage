@@ -1,0 +1,44 @@
+version: 2
+multi-ecosystem-groups:
+  dependencies:
+    schedule:
+      interval: monthly
+updates:
+  # Backstage itself is upgraded as a whole with `yarn backstage-cli versions:bump` (README, "Upgrading"), not by Dependabot:
+  # its packages move together and a single bumped plugin breaks the app. Dependabot only keeps the rest current.
+  - package-ecosystem: docker
+    directory: /
+    multi-ecosystem-group: dependencies
+    patterns: ["*"]
+    cooldown:
+      default-days: 7 # let a new release settle before it is proposed
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+  - package-ecosystem: pip
+    directory: /tools/techdocs
+    multi-ecosystem-group: dependencies
+    patterns: ["*"]
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+  - package-ecosystem: github-actions
+    directory: /
+    multi-ecosystem-group: dependencies
+    patterns: ["*"]
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"

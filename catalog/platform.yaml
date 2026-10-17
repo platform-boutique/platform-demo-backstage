@@ -1,0 +1,320 @@
+# Entities that do not belong to one repository: the domain, the systems, and the infrastructure the services run on.
+# Repository-level entities (components and APIs) live in each repository's catalog-info.yaml.
+# Model: https://backstage.io/docs/features/software-catalog/system-model
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: platform-demo
+  title: platform-demo
+  description: An online shop (ten microservices) built as the workload for a complete platform - delivery, security, networking, observability and a developer portal.
+  links:
+    - { url: https://github.com/platform-boutique, title: Organisation on GitHub, icon: github }
+    - { url: https://github.com/orgs/platform-boutique/projects/1, title: Roadmap board, icon: dashboard }
+spec:
+  owner: group:default/maintainers
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: shop
+  title: Online boutique
+  description: The storefront and the nine backends behind it, with their data stores.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: delivery
+  title: Delivery
+  description: How code reaches the cluster - shared CI/CD pipelines, signed images, Helm charts and Argo CD.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: security
+  title: Security and admission
+  description: Kyverno admission policies, image signature verification and single sign-on.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: networking
+  title: Networking
+  description: Cilium (CNI, kube-proxy replacement, Gateway API, mutual authentication) and Hubble flow visibility.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: observability
+  title: Observability
+  description: Grafana, Mimir, Loki, Tempo, Pyroscope and Alloy - the services push traces, metrics, logs and profiles over OTLP.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: developer-portal
+  title: Developer portal
+  description: This portal and its documentation.
+spec:
+  owner: group:default/maintainers
+  domain: platform-demo
+
+# ---------------------------------------------------------------------------------------------- shop resources
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cart-redis
+  title: cart-redis
+  description: Redis 7 holding the shopping carts (cache, single replica, no persistence required).
+  annotations:
+    backstage.io/kubernetes-id: cart-redis
+    backstage.io/kubernetes-namespace: platform-demo
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=cart-redis
+    argocd/app-name: dev-cart-redis
+  tags: [redis, cache]
+spec:
+  type: cache
+  owner: group:default/maintainers
+  system: shop
+
+# ---------------------------------------------------------------------------------------------- platform resources
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: platform-local-cluster
+  title: platform-local (kind)
+  description: The local Kubernetes cluster (kind, one node, no CNI and no kube-proxy - Cilium does both). Rebuilt from nothing by kind/up.sh in about ten minutes.
+  links:
+    - { url: https://github.com/platform-boutique/platform-demo-helm/tree/main/kind, title: Bootstrap scripts, icon: github }
+  tags: [kubernetes, kind]
+spec:
+  type: kubernetes-cluster
+  owner: group:default/maintainers
+  system: delivery
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: argocd
+  title: Argo CD
+  description: GitOps controller. ApplicationSets turn envs/<env>/ in the Helm repository into Applications; it also manages itself, Kyverno and the policies.
+  annotations:
+    backstage.io/kubernetes-id: argocd
+    backstage.io/kubernetes-namespace: argocd
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=argocd
+  links:
+    - { url: https://argocd.platform-demo.test, title: Argo CD UI, icon: dashboard }
+  tags: [gitops]
+spec:
+  type: gitops-controller
+  owner: group:default/maintainers
+  system: delivery
+  dependsOn: [resource:default/platform-local-cluster, component:default/platform-demo-helm]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: docker-hub
+  title: Docker Hub
+  description: Registry for the service images (mladenovskistefan/<service>), pinned by digest, scanned, signed with cosign and carrying an SBOM attestation.
+  links:
+    - { url: https://hub.docker.com/u/mladenovskistefan, title: Images, icon: web }
+  tags: [registry, cosign]
+spec:
+  type: container-registry
+  owner: group:default/maintainers
+  system: delivery
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kyverno
+  title: Kyverno
+  description: Admission control. Sixteen CEL policies, mutations and generators enforce identity, image provenance, hardening and exposure in the platform-demo namespace.
+  annotations:
+    backstage.io/kubernetes-id: kyverno
+    backstage.io/kubernetes-namespace: kyverno
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=kyverno
+  links:
+    - { url: https://github.com/platform-boutique/platform-demo-helm/tree/main/policies, title: Policies and catalog, icon: github }
+  tags: [policy, admission]
+spec:
+  type: policy-engine
+  owner: group:default/maintainers
+  system: security
+  dependsOn: [resource:default/platform-local-cluster]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: dex
+  title: Dex
+  description: OpenID Connect provider for single sign-on. People sign in with GitHub once; Backstage, Argo CD and Grafana trust Dex.
+  annotations:
+    backstage.io/kubernetes-id: dex
+    backstage.io/kubernetes-namespace: sso
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=dex
+  links:
+    - { url: https://dex.platform-demo.test/.well-known/openid-configuration, title: OIDC discovery, icon: web }
+  tags: [sso, oidc]
+spec:
+  type: identity-provider
+  owner: group:default/maintainers
+  system: security
+  dependsOn: [resource:default/platform-local-cluster, resource:default/github-organisation]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: github-organisation
+  title: GitHub organisation
+  description: platform-boutique on GitHub (free plan). Source of the code, of the pull-request pipelines and of the people who may sign in.
+  links:
+    - { url: https://github.com/platform-boutique, title: Organisation, icon: github }
+spec:
+  type: scm
+  owner: group:default/maintainers
+  system: delivery
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cilium
+  title: Cilium
+  description: CNI, kube-proxy replacement (eBPF), Gateway API controller and SPIFFE/SPIRE mutual authentication.
+  annotations:
+    backstage.io/kubernetes-id: cilium
+    backstage.io/kubernetes-namespace: kube-system
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=cilium
+  tags: [cni, ebpf, gateway-api]
+spec:
+  type: cni
+  owner: group:default/maintainers
+  system: networking
+  dependsOn: [resource:default/platform-local-cluster]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: hubble
+  title: Hubble
+  description: Flow visibility for Cilium - who talked to whom, what was dropped and why, which connections were authenticated.
+  annotations:
+    backstage.io/kubernetes-namespace: kube-system
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=cilium,k8s-app=hubble-relay
+  links:
+    - { url: https://hubble.platform-demo.test, title: Hubble UI, icon: dashboard }
+  tags: [flows, network]
+spec:
+  type: flow-observability
+  owner: group:default/maintainers
+  system: networking
+  dependsOn: [resource:default/cilium]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: grafana
+  title: Grafana
+  description: Dashboards and exploration for metrics, logs, traces and profiles. Signs in through Dex.
+  annotations:
+    backstage.io/kubernetes-id: grafana
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=grafana
+  links:
+    - { url: https://grafana.platform-demo.test, title: Grafana, icon: dashboard }
+  tags: [dashboards]
+spec:
+  type: dashboard
+  owner: group:default/maintainers
+  system: observability
+  dependsOn: [resource:default/mimir, resource:default/loki, resource:default/tempo, resource:default/pyroscope]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: alloy
+  title: Alloy
+  description: OTLP/gRPC receiver for traces, metrics and logs, Pyroscope receiver, and the log collector for the two stores that cannot speak OTLP.
+  annotations:
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=alloy
+  tags: [otlp, collector]
+spec:
+  type: telemetry-pipeline
+  owner: group:default/maintainers
+  system: observability
+  dependsOn: [resource:default/mimir, resource:default/loki, resource:default/tempo, resource:default/pyroscope]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: mimir
+  title: Mimir
+  description: Metrics store (Prometheus-compatible).
+  annotations:
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=mimir
+spec:
+  type: metrics-store
+  owner: group:default/maintainers
+  system: observability
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: loki
+  title: Loki
+  description: Log store; receives OTLP logs natively.
+  annotations:
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=loki
+spec:
+  type: log-store
+  owner: group:default/maintainers
+  system: observability
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: tempo
+  title: Tempo
+  description: Trace store.
+  annotations:
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=tempo
+spec:
+  type: trace-store
+  owner: group:default/maintainers
+  system: observability
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: pyroscope
+  title: Pyroscope
+  description: Continuous profiling store.
+  annotations:
+    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=pyroscope
+spec:
+  type: profile-store
+  owner: group:default/maintainers
+  system: observability

@@ -1,8 +1,18 @@
-# Local kind demo, no GitHub: the workspace folder ~/Desktop/platform-demo is mounted read-only into the pod at /workspace
-# (kind/up.sh, WORKSPACE_DIR) and the catalog reads the catalog-info.yaml of every repository from there. TechDocs sources are
-# read from the same files (`backstage.io/techdocs-ref: dir:.` resolves next to the descriptor).
-#
-# Users are listed by hand (catalog/org.yaml) because there is no GitHub organisation to read them from.
+# Local kind demo, no GitHub: the repositories are not pushed, so the catalog is read from a small HTTP server on the host
+# (kind/local-source.sh) that serves a staging copy of every repository's catalog-info.yaml and the files it references.
+# Entities that are not tied to one repository (domain, systems, resources) and the demo users ship inside the image.
+# TechDocs are published into the portal's volume by kind/techdocs-publish.sh; `dir:.` in the annotation is only the marker that
+# makes the Docs tab appear (techdocs.builder is external).
+
+backend:
+  reading:
+    allow:
+      - host: ${LOCAL_SOURCE_HOST:-172.18.0.1:8099}
+
+# The Helm repository's values come from the staging copy too (kind/local-source.sh); no call leaves the machine.
+releases:
+  valuesUrl: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/deploy/platform-demo-helm/envs/{env}/values/{app}.yaml
+  latestTag: false
 
 catalog:
   locations:
@@ -10,37 +20,37 @@ catalog:
       target: /app/catalog/platform.yaml
     - type: file
       target: /app/catalog/org.yaml
-    - type: file
-      target: /workspace/apps/ad-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/cart-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/checkout-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/currency-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/email-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/frontend/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/payment-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/product-catalog-db/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/product-catalog-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/recommendation-service/catalog-info.yaml
-    - type: file
-      target: /workspace/apps/shipping-service/catalog-info.yaml
-    - type: file
-      target: /workspace/deploy/platform-demo-helm/catalog-info.yaml
-    - type: file
-      target: /workspace/platform/platform-demo-workflows/catalog-info.yaml
-    - type: file
-      target: /workspace/platform/platform-demo-observability/catalog-info.yaml
-    - type: file
-      target: /workspace/platform/platform-demo-backstage/catalog-info.yaml
-    - type: file
-      target: /workspace/platform/org-profile/catalog-info.yaml
-    - type: file
-      target: /workspace/docs/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/ad-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/cart-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/checkout-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/currency-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/email-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/frontend/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/payment-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/product-catalog-db/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/product-catalog-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/recommendation-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/apps/shipping-service/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/deploy/platform-demo-helm/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-workflows/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-observability/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-backstage/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/org-profile/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/docs/catalog-info.yaml

@@ -41,6 +41,8 @@
     "@backstage/plugin-search-backend-node": "^1.4.8",
     "@backstage/plugin-techdocs-backend": "^2.3.0",
     "@backstage/plugin-user-settings-backend": "^0.4.7",
+    "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz",
+    "@platform-boutique/backstage-plugin-releases-backend": "file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz",
     "@roadiehq/backstage-plugin-argo-cd-backend": "^4.9.0",
     "@terasky/backstage-plugin-kyverno-policy-reports-backend": "^1.17.0",
     "app": "link:../app",
