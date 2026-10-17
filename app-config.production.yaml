@@ -7,6 +7,8 @@ app:
 backend:
   baseUrl: ${APP_BASE_URL}
   listen: ':7007'
+  # Scratch space for the TechDocs generator and for archive downloads.
+  workingDirectory: ${TECHDOCS_CACHE:-/data}/work
   cors:
     origin: ${APP_BASE_URL}
   # Single origin: the backend serves the compiled frontend (app-backend plugin), so there is no CORS in practice.
@@ -36,3 +38,9 @@ auth:
         prompt: auto
         # No `signIn.resolvers` here on purpose: the resolver is code (packages/backend/src/modules/dexSignIn.ts). It looks the
         # person up in the catalog by GitHub login first, by email second, and refuses everyone else.
+
+techdocs:
+  publisher:
+    local:
+      # Generated sites; an emptyDir/PVC is mounted here (the image runs with a read-only root filesystem).
+      publishDirectory: ${TECHDOCS_CACHE:-/data}/docs
