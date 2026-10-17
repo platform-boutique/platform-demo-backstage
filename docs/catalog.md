@@ -51,6 +51,7 @@ A component only shows a plugin's tab when it carries the annotation that plugin
 | `argocd/app-name: dev-<service>` | Argo CD | The Application that deploys it |
 | `grafana/dashboard-selector: tags @> '<tag>'` | Grafana | Dashboards of the service (each dashboard carries its service's tag) |
 | `grafana/overview-dashboard` | Grafana | A dashboard shown embedded on the entity page |
+| `grafana/alert-label-selector` | Grafana | Which firing alerts belong to the entity (`service=<name>`) |
 | `github.com/project-slug` | GitHub links | `platform-boutique/<repo>` |
 
 ## Adding a repository

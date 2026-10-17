@@ -29,7 +29,7 @@ Argo CD and Grafana with dedicated read-only identities. The portal can therefor
 
 | System | Identity the portal uses | What it can do |
 |---|---|---|
-| Kubernetes | ServiceAccount `backstage` + ClusterRole `backstage-read` | `get`, `list`, `watch` on workloads, Argo CD Applications, policy reports, Kyverno policies, Cilium and Gateway objects. No Secrets, no `exec`, no logs |
+| Kubernetes | ServiceAccount `backstage` + ClusterRole `backstage-read` (used by the Kubernetes, Releases and Policies plugins) | `get`, `list`, `watch` on workloads, Argo CD Applications, policy reports, Kyverno policies, Cilium and Gateway objects. No Secrets, no `exec`, no logs |
 | Argo CD | local account `backstage` (API key), role `portal` | read Applications and Projects |
 | Grafana | service account `backstage`, role Viewer | list dashboards, read alerts |
 | GitHub | token or GitHub App (production only) | read repositories and the organisation's members and teams |
@@ -56,5 +56,5 @@ Every environment-specific value is an environment variable with a sensible defa
 |---|---|
 | Software templates (scaffolder) | Nothing can be pushed yet, and creating repositories needs GitHub permissions that the free plan makes awkward. Adding it later is a backend module and one frontend package |
 | Notifications and signals | Nobody sends any |
-| Permissions framework policy | The portal is read-only and everyone who may sign in may see everything: `allow-all`. The Kyverno plugin's permission checks are off |
+| Permissions framework policy | The portal is read-only and everyone who may sign in may see everything: `allow-all` |
 | The Home page | The catalog is the landing page; a Home page of widgets would be decoration |

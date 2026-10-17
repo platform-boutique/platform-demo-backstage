@@ -25,7 +25,7 @@ backend.add(import('@backstage/plugin-catalog-backend-module-github-org'));
 // https://backstage.io/docs/features/techdocs/
 backend.add(import('@backstage/plugin-techdocs-backend'));
 
-// Kubernetes: read-only view of workloads, plus the proxy the Kyverno plugin uses
+// Kubernetes: read-only view of workloads
 // https://backstage.io/docs/features/kubernetes/
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
@@ -33,8 +33,8 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(argocdServiceFactory);
 backend.add(import('@roadiehq/backstage-plugin-argo-cd-backend'));
 
-// Kyverno policy reports (TeraSky): reads PolicyReports through the Kubernetes plugin's proxy
-backend.add(import('@terasky/backstage-plugin-kyverno-policy-reports-backend'));
+// Kyverno policy findings per workload and the policy catalog (own plugin, platform-demo-backstage-plugin-policies)
+backend.add(import('@platform-boutique/backstage-plugin-policies-backend'));
 
 // Network flows from Hubble Relay (own plugin, platform-demo-backstage-plugin-hubble)
 backend.add(import('@platform-boutique/backstage-plugin-hubble-backend'));

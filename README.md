@@ -35,8 +35,8 @@ tools/techdocs/                 scaffold, shared stylesheet, build script for th
 Dockerfile                      the multi-stage image build
 ```
 
-Deployment lives in `platform-demo-helm` (charts `backstage/` and `dex/`, the `kind/` bootstrap). Two plugins are written for this
-portal and live in their own repositories: `platform-demo-backstage-plugin-hubble` and `platform-demo-backstage-plugin-releases`.
+Deployment lives in `platform-demo-helm` (charts `backstage/` and `dex/`, the `kind/` bootstrap). Three plugins are written for this
+portal and live in their own repositories: `platform-demo-backstage-plugin-hubble`, `-releases` and `-policies`.
 
 ## Quick start
 

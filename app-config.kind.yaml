@@ -58,3 +58,5 @@ catalog:
       target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-backstage-plugin-hubble/catalog-info.yaml
     - type: url
       target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-backstage-plugin-releases/catalog-info.yaml
+    - type: url
+      target: http://${LOCAL_SOURCE_HOST:-172.18.0.1:8099}/workspace/platform/platform-demo-backstage-plugin-policies/catalog-info.yaml

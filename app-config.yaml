@@ -18,11 +18,9 @@ app:
     - page:catalog:
         config:
           path: /
-    # The Argo CD and Kyverno *tabs* render their tables in a way that crashes inside the entity tab layout of this Backstage
-    # version (material-table: "scrollWidth of null"); their *cards* on the overview page show the same data and work.
+    # The Argo CD tab renders its table in a way that crashes inside the entity tab layout of this Backstage version
+    # (material-table: "scrollWidth of null"); the Argo CD cards on the overview page show the same data and work.
     - entity-content:argocd/ArgoCdPage: false
-    - entity-content:kyverno-policy-reports/kyverno.reports: false
-    - entity-content:kyverno-policy-reports/kyverno.crossplane-reports: false
 
 organization:
   name: platform-boutique
@@ -77,10 +75,6 @@ releases:
   # Where the desired image of an application is declared (read with Backstage's URL reader; needs the GitHub integration)
   valuesUrl: https://github.com/platform-boutique/platform-demo-helm/blob/main/envs/{env}/values/{app}.yaml
   latestTag: true
-
-kyverno:
-  enabled: true
-  enablePermissions: false
 
 techdocs:
   # Documentation is built OUTSIDE the portal (tools/techdocs/build-docs.sh, in CI with `techdocs-cli generate`) and published

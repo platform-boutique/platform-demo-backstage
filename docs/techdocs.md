@@ -7,15 +7,19 @@ Every repository documents itself in its own `docs/` folder; the portal renders 
 ```text
 repository/
   catalog-info.yaml      annotation  backstage.io/techdocs-ref: dir:.
-  mkdocs.yml             navigation, theme features, extra_css
+  mkdocs.yml             navigation and theme features
   docs/
     index.md ...         the pages
-    stylesheets/extra.css  the shared look
 ```
 
-The look is one stylesheet (`tools/techdocs/extra.css` in this repository) copied into every repository. It uses only the
-theme's CSS variables, so it follows the portal's light and dark mode, and no external fonts, images or scripts, because
-TechDocs sanitises those.
+The look is **one stylesheet owned by the portal** (`tools/techdocs/extra.css`, compiled into `packages/app/src/modules/techdocs-style`
+by `tools/techdocs/sync-style.sh`). TechDocs deletes every `<link>` and `<style>` from the documentation it shows, so a repository
+cannot bring its own CSS; the portal injects the stylesheet into every docs page with a TechDocs addon instead. It uses only the
+theme's CSS variables, so it follows the light and dark mode, and no external fonts, images or scripts.
+
+!!! note "Previewing"
+    A plain `mkdocs serve` shows the pages without that stylesheet (the hero and tiles are unstyled). Build and publish to the portal
+    (`kind/techdocs-publish.sh`) to see the real thing.
 
 ## Building and publishing
 
