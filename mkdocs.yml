@@ -1,30 +1,25 @@
-# TechDocs site (https://backstage.io/docs/features/techdocs/), rendered by tools/techdocs/build-docs.sh or CI.
-site_name: "platform-demo-backstage"
-site_description: "The developer portal of the platform-demo project."
+site_name: platform-demo-backstage
+site_description: The developer portal of the platform-demo project.
 repo_url: https://github.com/platform-boutique/platform-demo-backstage
 edit_uri: edit/main/docs/
-
-plugins:
-  - techdocs-core
-
+nav:
+  - Overview: index.md
+  - Architecture: architecture.md
+  - Single sign-on: sso.md
+  - Catalog: catalog.md
+  - Documentation (TechDocs): techdocs.md
+  - Plugins: plugins.md
+  - Configuration: configuration.md
+  - Run it locally: local.md
+  - Build, release, deploy: release.md
+  - Operations: operations.md
 theme:
   name: material
   features:
     - navigation.sections
     - navigation.top
     - content.code.copy
-
+plugins:
+  - techdocs-core
 extra_css:
   - stylesheets/extra.css
-
-nav:
-  - "Overview": index.md
-  - "Architecture": architecture.md
-  - "Single sign-on": sso.md
-  - "Catalog": catalog.md
-  - "Documentation (TechDocs)": techdocs.md
-  - "Plugins": plugins.md
-  - "Configuration": configuration.md
-  - "Run it locally": local.md
-  - "Build, release, deploy": release.md
-  - "Operations": operations.md

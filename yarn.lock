@@ -3718,6 +3718,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage/plugin-signals-backend@npm:^0.3.19":
+  version: 0.3.19
+  resolution: "@backstage/plugin-signals-backend@npm:0.3.19"
+  dependencies:
+    "@backstage/backend-plugin-api": "npm:^1.10.1"
+    "@backstage/config": "npm:^1.3.9"
+    "@backstage/plugin-events-node": "npm:^0.4.26"
+    "@backstage/plugin-signals-node": "npm:^0.2.5"
+    "@backstage/types": "npm:^1.2.2"
+    express: "npm:^4.22.0"
+    express-promise-router: "npm:^4.1.0"
+    ws: "npm:^8.20.1"
+  checksum: 10c0/e1ece844c6c4643e1e9ba335a1e4a9f948eb7e1d9162eac164ca115a906a62a60586ab06599692e2e958edb72622ba42da98ff4b45ff733fae2e787b709cff8d
+  languageName: node
+  linkType: hard
+
 "@backstage/plugin-signals-node@npm:^0.2.5":
   version: 0.2.5
   resolution: "@backstage/plugin-signals-node@npm:0.2.5"
@@ -3745,6 +3761,30 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/f42874cf02f30ceb04d52bb6eccd1916c9f8277bf16ad3e09bcafc274704d9d02f1f7b9c5633c4693f52a779d6b3704685481a39e3510f20b908e9e0e5e4fd61
+  languageName: node
+  linkType: hard
+
+"@backstage/plugin-signals@npm:^0.0.35":
+  version: 0.0.35
+  resolution: "@backstage/plugin-signals@npm:0.0.35"
+  dependencies:
+    "@backstage/core-components": "npm:^0.18.14"
+    "@backstage/core-plugin-api": "npm:^1.12.10"
+    "@backstage/frontend-plugin-api": "npm:^0.18.1"
+    "@backstage/plugin-signals-react": "npm:^0.0.26"
+    "@backstage/theme": "npm:^0.7.3"
+    "@backstage/types": "npm:^1.2.2"
+    "@material-ui/core": "npm:^4.12.4"
+    "@remixicon/react": "npm:>=4.6.0 <4.9.0"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.30.2
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/abc480da7c2947517c792cb17f9dc754ca256efa6748d24fc1f41d973226a2f3e29505377ec274658f20374ea4d8897c9f4e01737d524a848886cc351ab34884
   languageName: node
   linkType: hard
 
@@ -13344,6 +13384,7 @@ __metadata:
     "@backstage/plugin-kubernetes": "npm:^0.12.23"
     "@backstage/plugin-org": "npm:^0.7.9"
     "@backstage/plugin-search": "npm:^1.7.8"
+    "@backstage/plugin-signals": "npm:^0.0.35"
     "@backstage/plugin-techdocs": "npm:^1.18.1"
     "@backstage/plugin-techdocs-module-addons-contrib": "npm:^1.1.40"
     "@backstage/plugin-user-settings": "npm:^0.9.7"
@@ -13976,6 +14017,7 @@ __metadata:
     "@backstage/plugin-search-backend-module-pg": "npm:^0.5.59"
     "@backstage/plugin-search-backend-module-techdocs": "npm:^0.4.18"
     "@backstage/plugin-search-backend-node": "npm:^1.4.8"
+    "@backstage/plugin-signals-backend": "npm:^0.3.19"
     "@backstage/plugin-techdocs-backend": "npm:^2.3.0"
     "@backstage/plugin-user-settings-backend": "npm:^0.4.7"
     "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz"
@@ -32426,7 +32468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:*, ws@npm:^8.18.0, ws@npm:^8.18.2, ws@npm:^8.18.3, ws@npm:^8.8.0":
+"ws@npm:*, ws@npm:^8.18.0, ws@npm:^8.18.2, ws@npm:^8.18.3, ws@npm:^8.20.1, ws@npm:^8.8.0":
   version: 8.22.0
   resolution: "ws@npm:8.22.0"
   peerDependencies:

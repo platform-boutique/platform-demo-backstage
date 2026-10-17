@@ -56,7 +56,8 @@ backend.add(import('@backstage/plugin-search-backend-module-pg'));
 backend.add(import('@backstage/plugin-search-backend-module-catalog'));
 backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 
-// Per-user settings (starred entities, theme)
+// Per-user settings (starred entities, theme); the frontend's storage API talks to the signals service to sync tabs
 backend.add(import('@backstage/plugin-user-settings-backend'));
+backend.add(import('@backstage/plugin-signals-backend'));
 
 backend.start();
