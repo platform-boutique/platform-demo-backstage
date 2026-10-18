@@ -60,6 +60,10 @@ argocd:
           url: ${ARGOCD_API_URL:-http://argocd-server.argocd.svc.cluster.local}
           token: ${ARGOCD_AUTH_TOKEN}
 
+deployments:
+  # Where the backend reaches Argo CD's API for the Deployments tab. It sends the signed-in person's Dex ID token, not a token of its own.
+  argocdUrl: ${ARGOCD_API_URL:-http://argocd-server.argocd.svc.cluster.local}
+
 grafana:
   # Where the browser reaches Grafana (links and embedded dashboards) and where the backend reaches it for the alerts list.
   domain: ${GRAFANA_URL:-https://grafana.platform-demo.test}

@@ -42,6 +42,9 @@ backend.add(import('@platform-boutique/backstage-plugin-hubble-backend'));
 // Release state: what Argo CD runs vs. what the Helm repository declares (own plugin, platform-demo-backstage-plugin-releases)
 backend.add(import('@platform-boutique/backstage-plugin-releases-backend'));
 
+// Deployments tab: Argo CD status, resources and history, acting as the signed-in person (own plugin, platform-demo-backstage-plugin-argocd)
+backend.add(import('@platform-boutique/backstage-plugin-deployments-backend'));
+
 // Permissions: allow-all (every signed-in person may see everything; the portal is read-only for infrastructure).
 // https://backstage.io/docs/permissions/getting-started
 backend.add(import('@backstage/plugin-permission-backend'));

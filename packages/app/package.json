@@ -41,6 +41,7 @@
     "@backstage/ui": "^0.18.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
+    "@platform-boutique/backstage-plugin-deployments": "file:../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-hubble": "file:../../vendor/platform-boutique-backstage-plugin-hubble-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-policies": "file:../../vendor/platform-boutique-backstage-plugin-policies-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-releases": "file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz",

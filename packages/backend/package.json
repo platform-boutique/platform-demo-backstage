@@ -42,6 +42,7 @@
     "@backstage/plugin-signals-backend": "^0.3.19",
     "@backstage/plugin-techdocs-backend": "^2.3.0",
     "@backstage/plugin-user-settings-backend": "^0.4.7",
+    "@platform-boutique/backstage-plugin-deployments-backend": "file:../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-policies-backend": "file:../../vendor/platform-boutique-backstage-plugin-policies-backend-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-releases-backend": "file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz",
