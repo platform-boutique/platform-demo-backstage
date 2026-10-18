@@ -5,12 +5,13 @@
 #
 #   tools/techdocs/build-docs.sh <workspace-root> <out-dir>       e.g.  ~/Desktop/platform-demo  /tmp/techdocs
 #
-# Needs: python3 (a virtualenv with tools/techdocs/requirements.txt is created next to this script), node/npx.
+# Needs: python3 (a virtualenv with tools/techdocs/requirements.txt is created in ~/.cache/platform-demo/), node/npx.
 set -euo pipefail
 ROOT="${1:?usage: build-docs.sh <workspace-root> <out-dir>}"; OUT="${2:?usage: build-docs.sh <workspace-root> <out-dir>}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 TECHDOCS_CLI_VERSION="${TECHDOCS_CLI_VERSION:-1.12.0}"
-VENV="${TECHDOCS_VENV:-$HERE/.venv}"
+# Outside every repository: MkDocs refuses symlinks that leave the repository it renders (the portal documents itself).
+VENV="${TECHDOCS_VENV:-$HOME/.cache/platform-demo/techdocs-venv}"
 
 if [ ! -x "$VENV/bin/mkdocs" ]; then
   echo "==> creating the MkDocs virtualenv in $VENV"
