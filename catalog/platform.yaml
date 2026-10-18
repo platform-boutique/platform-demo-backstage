@@ -119,6 +119,7 @@ metadata:
     backstage.io/kubernetes-id: argocd
     backstage.io/kubernetes-namespace: argocd
     backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=argocd
+    argocd/app-name: argocd
   links:
     - { url: https://argocd.platform-demo.test, title: Argo CD UI, icon: dashboard }
   tags: [gitops]
@@ -152,6 +153,7 @@ metadata:
     backstage.io/kubernetes-id: kyverno
     backstage.io/kubernetes-namespace: kyverno
     backstage.io/kubernetes-label-selector: app.kubernetes.io/part-of=kyverno
+    argocd/app-name: kyverno
   links:
     - { url: https://github.com/platform-boutique/platform-demo-helm/tree/main/policies, title: Policies and catalog, icon: github }
   tags: [policy, admission]
@@ -171,6 +173,7 @@ metadata:
     backstage.io/kubernetes-id: dex
     backstage.io/kubernetes-namespace: sso
     backstage.io/kubernetes-label-selector: app.kubernetes.io/name=dex
+    argocd/app-name: dev-dex
   links:
     - { url: https://dex.platform-demo.test/.well-known/openid-configuration, title: OIDC discovery, icon: web }
   tags: [sso, oidc]

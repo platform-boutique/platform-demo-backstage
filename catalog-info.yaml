@@ -6,6 +6,7 @@ metadata:
   description: "The developer portal: software catalog, TechDocs, Kubernetes, Argo CD and Kyverno views, single sign-on through Dex."
   annotations:
     github.com/project-slug: platform-boutique/platform-demo-backstage
+    backstage.io/source-location: url:https://github.com/platform-boutique/platform-demo-backstage/tree/main/
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: backstage
     backstage.io/kubernetes-namespace: backstage
@@ -13,7 +14,6 @@ metadata:
     argocd/app-name: dev-backstage
   tags: [backstage, typescript, portal]
   links:
-    - { url: "https://github.com/platform-boutique/platform-demo-backstage", title: Repository, icon: github }
     - { url: "https://backstage.platform-demo.test", title: Portal, icon: web }
     - { url: "https://argocd.platform-demo.test/applications/argocd/dev-backstage", title: Argo CD, icon: dashboard }
 spec:
