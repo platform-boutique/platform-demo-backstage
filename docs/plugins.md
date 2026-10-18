@@ -8,7 +8,7 @@ What is installed, where its data comes from, and what each one needs from the e
 | API docs | `@backstage/plugin-api-docs` | The gRPC definitions | `$text` includes in the API entities | `kind: API` |
 | TechDocs | `@backstage/plugin-techdocs` + Mermaid addon | The docs of the repository | Sites published to `/data/docs` | `backstage.io/techdocs-ref` |
 | Kubernetes | `@backstage/plugin-kubernetes` | Deployments, pods, services, events of the entity | Kubernetes API, read-only ServiceAccount | `backstage.io/kubernetes-label-selector` (or `-id`), `-namespace` |
-| Argo CD | `@roadiehq/backstage-plugin-argo-cd` (+ backend) | Sync and health, revision history, link to the Application | Argo CD API with the read-only `backstage` account | `argocd/app-name` |
+| Deployments (own) | `@platform-boutique/backstage-plugin-deployments` (+ backend) | Argo CD sync and health, live revision, history with commit links, owned resources, link to the Application; read-only | Argo CD API **as the signed-in person** (their Dex ID token; Argo CD's RBAC decides) | `argocd/app-name` |
 | Policies (own) | `@platform-boutique/backstage-plugin-policies` (+ backend) | Kyverno pass/fail/warn counts and the failing results for the entity's objects; the catalog of installed policies | `PolicyReport`s and Kyverno policy kinds, read with the read-only ServiceAccount | `backstage.io/kubernetes-label-selector`, `-namespace` |
 | Grafana | `@backstage-community/plugin-grafana` | The service's dashboards, firing alerts, an embedded overview dashboard | Grafana API with a Viewer service account | `grafana/dashboard-selector`, `grafana/overview-dashboard` |
 | Search | `@backstage/plugin-search` | One search box for entities and documentation | PostgreSQL full-text search | - |
@@ -18,7 +18,7 @@ What is installed, where its data comes from, and what each one needs from the e
 
 | Need | Chosen | Alternatives considered |
 |---|---|---|
-| Argo CD | Roadie's plugin | Red Hat's `redhat-argocd` (richer deployment view, built for OpenShift GitOps) |
+| Argo CD | **Own plugin** (Roadie's needed a shared Argo CD token, which needs a local Argo CD account; its history card also hid the oldest entry) | Roadie's plugin, Red Hat's `redhat-argocd` |
 | Kyverno | **Own plugin** (tried TeraSky's first: its frontend sends an entity without `kind`, which the stock Kubernetes backend refuses with 403, so it never loaded) | Policy Reporter's plugin (beta); its UI is not needed because the reports show here |
 | Grafana | The community plugin (the successor of `@k-phoen/backstage-plugin-grafana`, which is barely maintained) | Embedding by hand with an iframe component |
 

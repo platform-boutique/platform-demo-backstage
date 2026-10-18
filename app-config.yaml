@@ -18,9 +18,6 @@ app:
     - page:catalog:
         config:
           path: /
-    # The Argo CD tab renders its table in a way that crashes inside the entity tab layout of this Backstage version
-    # (material-table: "scrollWidth of null"); the Argo CD cards on the overview page show the same data and work.
-    - entity-content:argocd/ArgoCdPage: false
 
 organization:
   name: platform-boutique
@@ -49,19 +46,9 @@ integrations:
       token: ${GITHUB_TOKEN}
 
 argocd:
-  # Where people click through to the Argo CD UI (the backend reaches Argo CD on its in-cluster address below).
+  # Where people click through to the Argo CD UI ("Open in Argo CD" on the Deployments tab). The portal itself talks to Argo CD's API
+  # only with the signed-in person's own Dex token (see `deployments`): there is no shared token and no local Argo CD account.
   baseUrl: ${ARGOCD_URL:-https://argocd.platform-demo.test}
-  # How many history entries the Argo CD history card shows. Unset, the Roadie plugin uses slice(0, -1) and drops the OLDEST entry, so an
-  # application with a single deployment shows no history card at all.
-  revisionsToLoad: 10
-  # The Argo CD cards ask the Backstage backend, which calls Argo CD's API with a dedicated read-only account (account
-  # `backstage` in argocd-cm, token in ARGOCD_AUTH_TOKEN). People never hand their own Argo CD session to Backstage.
-  appLocatorMethods:
-    - type: config
-      instances:
-        - name: ${CLUSTER_NAME:-platform-local}
-          url: ${ARGOCD_API_URL:-http://argocd-server.argocd.svc.cluster.local}
-          token: ${ARGOCD_AUTH_TOKEN}
 
 deployments:
   # Where the backend reaches Argo CD's API for the Deployments tab. It sends the signed-in person's Dex ID token, not a token of its own.
