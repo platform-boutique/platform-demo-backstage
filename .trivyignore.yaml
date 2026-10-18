@@ -1,0 +1,17 @@
+# Accepted Trivy findings of the portal image. Each is time-boxed (expired_at): when it lapses the finding fails the pipeline again and
+# has to be re-examined. Only findings with NO fixed version anywhere belong here; anything fixable is upgraded instead.
+vulnerabilities:
+  - id: CVE-2026-93687
+    paths:
+      - "**/node_modules/braces/package.json"
+    expired_at: 2026-11-17
+    statement: >-
+      braces 3.0.3 is the newest release that exists (published 2024-05-21) and the advisory names no fixed version, so there is nothing to
+      upgrade to. It is a transitive dependency of micromatch and chokidar. Re-check before the expiry date.
+  - id: CVE-2026-85393
+    paths:
+      - "**/node_modules/node-forge/package.json"
+    expired_at: 2026-11-17
+    statement: >-
+      node-forge 1.4.0 is the newest release that exists (published 2026-03-24) and the advisory names no fixed version, so there is
+      nothing to upgrade to. Re-check before the expiry date.

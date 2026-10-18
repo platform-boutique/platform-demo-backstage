@@ -25,6 +25,8 @@ jobs:
       contents: read
       packages: write
     uses: platform-boutique/platform-demo-workflows/.github/workflows/docker-build.yaml@28d80c1d4abd81c1529bf593a874640132692e8a # v2.0.2
+    with:
+      trivyignores: .trivyignore.yaml
 
   workflows:
     permissions:
