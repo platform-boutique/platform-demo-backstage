@@ -28,7 +28,7 @@ auth:
     # organisation's teams on in the `groups` claim.
     oidc:
       production:
-        metadataUrl: ${DEX_ISSUER_URL:-https://dex.platform-demo.test}/.well-known/openid-configuration
+        metadataUrl: ${DEX_ISSUER_URL:-https://dex.platform-demo.click}/.well-known/openid-configuration
         clientId: backstage
         clientSecret: ${BACKSTAGE_OIDC_CLIENT_SECRET}
         # openid, profile and email are always requested; `groups` is what Dex needs to hand out team membership and

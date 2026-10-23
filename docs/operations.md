@@ -6,7 +6,7 @@
 kubectl -n backstage get pods                 # backstage-… and backstage-postgres-0 both Running and Ready
 kubectl -n sso get pods                       # dex
 kubectl -n backstage logs deploy/backstage    # JSON lines; errors name the plugin that failed
-curl -sk https://backstage.platform-demo.test/.backstage/health/v1/readiness
+curl -sk https://backstage.platform-demo.click/.backstage/health/v1/readiness
 ```
 
 | Symptom | Likely cause |

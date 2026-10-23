@@ -8,17 +8,17 @@ variables; the Helm chart sets them.
 | Variable | Default | Used for |
 |---|---|---|
 | `APP_BASE_URL` | `http://localhost:3000` | Public URL of the portal (also the backend's) |
-| `DEX_ISSUER_URL` | `https://dex.platform-demo.test` | OIDC issuer |
+| `DEX_ISSUER_URL` | `https://dex.platform-demo.click` | OIDC issuer |
 | `BACKSTAGE_OIDC_CLIENT_SECRET` | - | The `backstage` client in Dex. **Secret** |
 | `AUTH_SESSION_SECRET` | - | Signs the OAuth handshake session. **Secret** |
 | `POSTGRES_HOST` / `PORT` / `USER` / `POSTGRES_PASSWORD` | - | Database. **Password is a secret** |
-| `ARGOCD_URL` | `https://argocd.platform-demo.test` | Where "open in Argo CD" links go |
+| `ARGOCD_URL` | `https://argocd.platform-demo.click` | Where "open in Argo CD" links go |
 | `ARGOCD_API_URL` | `http://argocd-server.argocd.svc.cluster.local` | Where the backend calls the Argo CD API |
 | `ARGOCD_AUTH_TOKEN` | - | Token of the read-only account. **Secret** |
-| `GRAFANA_URL` | `https://grafana.platform-demo.test` | Links, iframe origin |
+| `GRAFANA_URL` | `https://grafana.platform-demo.click` | Links, iframe origin |
 | `GRAFANA_API_URL` | `http://grafana.monitoring.svc.cluster.local:3000` | Grafana API from the backend |
 | `GRAFANA_TOKEN` | - | Viewer service-account token. **Secret** |
-| `CLUSTER_NAME` | `platform-local` | Name under which the cluster appears |
+| `CLUSTER_NAME` | `platform-demo` | Name under which the cluster appears |
 | `GITHUB_TOKEN` | - | Catalog discovery (production only). **Secret** |
 | `TECHDOCS_CACHE` | `/data` | Volume with the published sites |
 | `NODE_EXTRA_CA_CERTS` | - | A private CA that signed Dex's certificate (local cluster) |

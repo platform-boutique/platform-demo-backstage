@@ -4791,25 +4791,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:8.9.0":
-  version: 8.9.0
-  resolution: "@graphql-tools/utils@npm:8.9.0"
+"@graphql-tools/utils@npm:^12.0.1":
+  version: 12.1.0
+  resolution: "@graphql-tools/utils@npm:12.1.0"
   dependencies:
+    "@graphql-typed-document-node/core": "npm:^3.1.1"
+    "@whatwg-node/promise-helpers": "npm:^2.0.0"
+    cross-inspect: "npm:1.0.1"
     tslib: "npm:^2.4.0"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/dd589d970fee9ce093a545c69d6306b61af0f38358361295af1274164a87db2985a51d05ca0e0dd08a4e709f0b5c7c201e69ab0b30480fe2fa0c7a7b8310da0a
+  checksum: 10c0/a781650a9ccc524170ea04e485fb56f6ec357b2372787cd0056bd3bb0d4c38d10ae5bcbea598256353888dd96424b312e842ee47fc1eb3e6ebeb6bc1313203a3
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:^8.8.0":
-  version: 8.13.1
-  resolution: "@graphql-tools/utils@npm:8.13.1"
-  dependencies:
-    tslib: "npm:^2.4.0"
+"@graphql-typed-document-node/core@npm:^3.1.1":
+  version: 3.2.0
+  resolution: "@graphql-typed-document-node/core@npm:3.2.0"
   peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/f9bab1370aa91e706abec4c8ea980e15293cb78bd4effba53ad2365dc39d81148db7667b3ef89b35f0a0b0ad58081ffdac4264b7125c69fa8393590ae5025745
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 10c0/94e9d75c1f178bbae8d874f5a9361708a3350c8def7eaeb6920f2c820e82403b7d4f55b3735856d68e145e86c85cbfe2adc444fdc25519cd51f108697e99346c
   languageName: node
   linkType: hard
 
@@ -7440,20 +7441,20 @@ __metadata:
 
 "@platform-boutique/backstage-plugin-deployments-backend@file:../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz::locator=backend%40workspace%3Apackages%2Fbackend":
   version: 0.1.0
-  resolution: "@platform-boutique/backstage-plugin-deployments-backend@file:../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz::hash=67ea90&locator=backend%40workspace%3Apackages%2Fbackend"
+  resolution: "@platform-boutique/backstage-plugin-deployments-backend@file:../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-deployments-backend-0.1.0.tgz::hash=323d9e&locator=backend%40workspace%3Apackages%2Fbackend"
   dependencies:
     "@backstage/backend-defaults": "npm:^0.18.0"
     "@backstage/backend-plugin-api": "npm:^1.10.1"
     "@backstage/errors": "npm:^1.3.1"
     express: "npm:^4.17.1"
     express-promise-router: "npm:^4.1.0"
-  checksum: 10c0/5a110ba0f44af309ad4d2b82f0200be2be6bc06e4fe3ed18007d4970ccd83b1a98a421ce1b38938b3f1ced3cf2e69ba323bc60998d83f39ab6eb84ad94870207
+  checksum: 10c0/85d27962ec8fe45f603e5045696d0018b0742444a6419b5c5b53e6e661d8d069401dc9f4474df577fa6d7854cb563e9cdb0d17984e6079bab20caefcc6e6f718
   languageName: node
   linkType: hard
 
 "@platform-boutique/backstage-plugin-deployments@file:../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz::locator=app%40workspace%3Apackages%2Fapp":
   version: 0.1.0
-  resolution: "@platform-boutique/backstage-plugin-deployments@file:../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz::hash=838e66&locator=app%40workspace%3Apackages%2Fapp"
+  resolution: "@platform-boutique/backstage-plugin-deployments@file:../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz#../../vendor/platform-boutique-backstage-plugin-deployments-0.1.0.tgz::hash=44ca9f&locator=app%40workspace%3Apackages%2Fapp"
   dependencies:
     "@backstage/core-components": "npm:^0.18.14"
     "@backstage/core-plugin-api": "npm:^1.12.10"
@@ -7467,7 +7468,7 @@ __metadata:
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
     react-router-dom: ^6.30.0
-  checksum: 10c0/1ba8a2c03d38d71f83cbfb9f2f04b150b6658956c6d4f86e29c84a14129ceb99c5a1325a5c16f7d75d71e79786d1912d02a4cfa2b34bdb3026ef1abccc4f7467
+  checksum: 10c0/d649bfbcdccf129f86e99cbd235a02206ae09ae666d4ad9a42cdaadb4490e244b88da0471b709546e88c5e4ebde0cdc17aedbc9f32b98f09300bed227562f02b
   languageName: node
   linkType: hard
 
@@ -8319,61 +8320,6 @@ __metadata:
   peerDependencies:
     react: ^16.14.0 || >=17
   checksum: 10c0/5e93081fb552094c633f0b71e6b162cfe3901f51cd60aa3e1cebcf2040a8dc80d9fa446abaf68d5eb5800bb125400ddc2cb002ed9ec826248668200049e6ceb2
-  languageName: node
-  linkType: hard
-
-"@roadiehq/backstage-plugin-argo-cd-backend@npm:^4.9.0":
-  version: 4.9.0
-  resolution: "@roadiehq/backstage-plugin-argo-cd-backend@npm:4.9.0"
-  dependencies:
-    "@backstage/backend-plugin-api": "npm:^1.10.1"
-    "@backstage/config": "npm:^1.3.9"
-    "@roadiehq/backstage-plugin-argo-cd-node": "npm:^2.2.0"
-    "@types/express": "npm:^4.17.6"
-    cross-fetch: "npm:^3.1.4"
-    express-promise-router: "npm:^4.1.0"
-  peerDependencies:
-    express: ^4.17.1 || ^5.0.0
-  checksum: 10c0/c4d83a6deef08d7c76f4ced4f66175204193c09de995566584b26f06a26ae639511dc65402542482a4935184f0c502261025cebf0c5f4293fef8eaa6b2d28c9d
-  languageName: node
-  linkType: hard
-
-"@roadiehq/backstage-plugin-argo-cd-node@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@roadiehq/backstage-plugin-argo-cd-node@npm:2.2.0"
-  dependencies:
-    "@backstage/backend-plugin-api": "npm:^1.10.1"
-    "@backstage/config": "npm:^1.3.9"
-    cross-fetch: "npm:^3.1.4"
-  checksum: 10c0/f71242a71fc55b9fd170ba52aef9e1c8708d1b46cac72e1bc199712617d331003841084552676b1178e8cb8160361601bbf94cf1fed6befe76b793a8d6954eb7
-  languageName: node
-  linkType: hard
-
-"@roadiehq/backstage-plugin-argo-cd@npm:^2.13.1":
-  version: 2.13.1
-  resolution: "@roadiehq/backstage-plugin-argo-cd@npm:2.13.1"
-  dependencies:
-    "@backstage/catalog-model": "npm:^1.10.1"
-    "@backstage/core-compat-api": "npm:^0.5.15"
-    "@backstage/core-components": "npm:^0.18.14"
-    "@backstage/core-plugin-api": "npm:^1.12.10"
-    "@backstage/frontend-plugin-api": "npm:^0.18.1"
-    "@backstage/plugin-catalog-react": "npm:^3.2.3"
-    "@material-ui/core": "npm:^4.12.2"
-    "@material-ui/icons": "npm:^4.9.1"
-    cross-fetch: "npm:^3.1.4"
-    fp-ts: "npm:^2.10.0"
-    io-ts: "npm:^2.2.16"
-    io-ts-promise: "npm:^2.0.2"
-    io-ts-reporters: "npm:^1.2.2"
-    luxon: "npm:^3.5.0"
-    react-use: "npm:^17.2.4"
-  peerDependencies:
-    react: ^16.13.1 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
-    react-router: 6.0.0-beta.0  || ^6.3.0
-    react-router-dom: 6.0.0-beta.0  || ^6.3.0
-  checksum: 10c0/e2056cedb6fae7764fa2158382fa59d41cd0ae78c5b2fe7f89b22dd2fe65d0c42b70a1a5e4b96c32900b509bd7d06a67d403f3095b23b868b1bf2a17cba5cd73
   languageName: node
   linkType: hard
 
@@ -12184,6 +12130,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@whatwg-node/promise-helpers@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@whatwg-node/promise-helpers@npm:2.0.0"
+  dependencies:
+    tslib: "npm:^2.6.3"
+  checksum: 10c0/b3f573a9b58a7f0c3ebc9e0b89c79f59863027fea400a0c91e2d8bd4e3b9fbf290cb52df50285734688e5c1ce5890803ecabb88134a0a0727bad0c76ad304238
+  languageName: node
+  linkType: hard
+
 "@xobotyi/scrollbar-width@npm:^1.9.5":
   version: 1.9.5
   resolution: "@xobotyi/scrollbar-width@npm:1.9.5"
@@ -13250,7 +13205,6 @@ __metadata:
     "@platform-boutique/backstage-plugin-policies": "file:../../vendor/platform-boutique-backstage-plugin-policies-0.1.0.tgz"
     "@platform-boutique/backstage-plugin-releases": "file:../../vendor/platform-boutique-backstage-plugin-releases-0.1.0.tgz"
     "@playwright/test": "npm:^1.32.3"
-    "@roadiehq/backstage-plugin-argo-cd": "npm:^2.13.1"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -13872,7 +13826,6 @@ __metadata:
     "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz"
     "@platform-boutique/backstage-plugin-policies-backend": "file:../../vendor/platform-boutique-backstage-plugin-policies-backend-0.1.0.tgz"
     "@platform-boutique/backstage-plugin-releases-backend": "file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz"
-    "@roadiehq/backstage-plugin-argo-cd-backend": "npm:^4.9.0"
     app: "link:../app"
     better-sqlite3: "npm:^12.0.0"
     node-gyp: "npm:^10.0.0"
@@ -14036,10 +13989,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"basic-ftp@npm:^5.0.2":
-  version: 5.3.1
-  resolution: "basic-ftp@npm:5.3.1"
-  checksum: 10c0/03511b488cd292abfa82a8c0ea3b9573b40d12d2f1518d6f41a9461b012b3376d3e6d50679b38d9b2b4f48fd6e8e0418ac196312ee7e2da13cb801169940d1c3
+"basic-ftp@npm:^6.2.1":
+  version: 6.2.3
+  resolution: "basic-ftp@npm:6.2.3"
+  checksum: 10c0/d3760bbadb213f3b60cd5b4c0dc61d1419abdec41ba6966faf0bea0f14b9a283317135ed0ccfdc954a94832019bf042b43e363b211315c22a553e776a951b0ba
   languageName: node
   linkType: hard
 
@@ -14797,13 +14750,6 @@ __metadata:
   version: 1.1.4
   resolution: "chownr@npm:1.1.4"
   checksum: 10c0/ed57952a84cc0c802af900cf7136de643d3aba2eecb59d29344bc2f3f9bf703a301b9d84cdc71f82c3ffc9ccde831b0d92f5b45f91727d6c9da62f23aef9d9db
-  languageName: node
-  linkType: hard
-
-"chownr@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "chownr@npm:2.0.0"
-  checksum: 10c0/594754e1303672171cc04e50f6c398ae16128eb134a88f801bf5354fd96f205320f23536a045d9abd8b51024a149696e51231565891d4efdab8846021ecf88e6
   languageName: node
   linkType: hard
 
@@ -15708,7 +15654,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:^3.1.4, cross-fetch@npm:^3.1.5":
+"cross-fetch@npm:^3.1.5":
   version: 3.2.0
   resolution: "cross-fetch@npm:3.2.0"
   dependencies:
@@ -15723,6 +15669,15 @@ __metadata:
   dependencies:
     node-fetch: "npm:^2.7.0"
   checksum: 10c0/628b134ea27cfcada67025afe6ef1419813fffc5d63d175553efa75a2334522d450300a0f3f0719029700da80e96327930709d5551cf6deb39bb62f1d536642e
+  languageName: node
+  linkType: hard
+
+"cross-inspect@npm:1.0.1":
+  version: 1.0.1
+  resolution: "cross-inspect@npm:1.0.1"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 10c0/2493ee47a801b46ede1c42ca6242b8d2059f7319b5baf23887bbaf46a6ea8e536d2e271d0990176c05092f67b32d084ffd8c93e7c1227eff4a06cceadb49af47
   languageName: node
   linkType: hard
 
@@ -16582,20 +16537,6 @@ __metadata:
     babel-plugin-macros:
       optional: true
   checksum: 10c0/acaff07cac355b93f17b1b17ebbb84d3cc55af6ab4b7814c3f505e061903e168bc6bf9ddce331552d64dee1525f0b4c549c9ade46aebfac6f69caaed74e90751
-  languageName: node
-  linkType: hard
-
-"deep-equal@npm:^1.1.0":
-  version: 1.1.2
-  resolution: "deep-equal@npm:1.1.2"
-  dependencies:
-    is-arguments: "npm:^1.1.1"
-    is-date-object: "npm:^1.0.5"
-    is-regex: "npm:^1.1.4"
-    object-is: "npm:^1.1.5"
-    object-keys: "npm:^1.1.1"
-    regexp.prototype.flags: "npm:^1.5.1"
-  checksum: 10c0/cd85d822d18e9b3e1532d0f6ba412d229aa9d22881d70da161674428ae96e47925191296f7cda29306bac252889007da40ed8449363bd1c96c708acb82068a00
   languageName: node
   linkType: hard
 
@@ -18774,13 +18715,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fp-ts@npm:^2.10.0":
-  version: 2.16.11
-  resolution: "fp-ts@npm:2.16.11"
-  checksum: 10c0/9a263a577964adbb754221c48449a64a6962c91fa6af136e73b043ee70ee41c7b856fe1e6cc21fb4f0264dd9a75c53bd381b1bb486b6caa99a71f33d1bb24c2a
-  languageName: node
-  linkType: hard
-
 "framer-motion@npm:^12.43.0":
   version: 12.43.0
   resolution: "framer-motion@npm:12.43.0"
@@ -18889,15 +18823,6 @@ __metadata:
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
   checksum: 10c0/9b808bd884beff5cb940773018179a6b94a966381d005479f00adda6b44e5e3d4abf765135773d849cc27efe68c349e4a7b86acd7d3306d5932c14f3a4b17a92
-  languageName: node
-  linkType: hard
-
-"fs-minipass@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "fs-minipass@npm:2.1.0"
-  dependencies:
-    minipass: "npm:^3.0.0"
-  checksum: 10c0/703d16522b8282d7299337539c3ed6edddd1afe82435e4f5b76e34a79cd74e488a8a0e26a636afc2440e1a23b03878e2122e3a2cfe375a5cf63c37d92b86a004
   languageName: node
   linkType: hard
 
@@ -20531,37 +20456,6 @@ __metadata:
   dependencies:
     loose-envify: "npm:^1.0.0"
   checksum: 10c0/5af133a917c0bcf65e84e7f23e779e7abc1cd49cb7fdc62d00d1de74b0d8c1b5ee74ac7766099fb3be1b05b26dfc67bab76a17030d2fe7ea2eef867434362dfc
-  languageName: node
-  linkType: hard
-
-"io-ts-promise@npm:^2.0.2":
-  version: 2.0.3
-  resolution: "io-ts-promise@npm:2.0.3"
-  dependencies:
-    deep-equal: "npm:^1.1.0"
-  peerDependencies:
-    fp-ts: 2.x
-    io-ts: 2.x
-  checksum: 10c0/92a020f30efc8b1179c5e7c6017794114d482ec5574419caa8ee4e23e54d4f6e59052dbf02552f18d96faa15695e1ea344e3f78de1b44d31bf301d3f703136a1
-  languageName: node
-  linkType: hard
-
-"io-ts-reporters@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "io-ts-reporters@npm:1.2.2"
-  peerDependencies:
-    fp-ts: ^2.0.2
-    io-ts: ^2.0.0
-  checksum: 10c0/3e11402c671e514b2685ac13f297df87ea507315aeffcf7f8eedb997e21047ffec12ac6fd49d1b19206a030462f80942ff9de6cfeafa0c61c5cc2a7a6458de2c
-  languageName: node
-  linkType: hard
-
-"io-ts@npm:^2.2.16":
-  version: 2.2.22
-  resolution: "io-ts@npm:2.2.22"
-  peerDependencies:
-    fp-ts: ^2.5.0
-  checksum: 10c0/5382c2f09807d8ef7e468cb0061f44ccc691d0173b376d1f8a50ef5cf3c1e38b1402030817fa7a3402969c842de2386ef0d19f6437b0fdfca203a9c5fc3d493a
   languageName: node
   linkType: hard
 
@@ -23059,7 +22953,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:^3.0.0, luxon@npm:^3.5.0":
+"luxon@npm:^3.0.0":
   version: 3.7.2
   resolution: "luxon@npm:3.7.2"
   checksum: 10c0/ed8f0f637826c08c343a29dd478b00628be93bba6f068417b1d8896b61cb61c6deacbe1df1e057dbd9298334044afa150f9aaabbeb3181418ac8520acfdc2ae2
@@ -23159,9 +23053,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-it@npm:^14.1.0":
-  version: 14.3.2
-  resolution: "markdown-it@npm:14.3.2"
+"markdown-it@npm:^14.3.3":
+  version: 14.3.3
+  resolution: "markdown-it@npm:14.3.3"
   dependencies:
     argparse: "npm:^2.0.1"
     entities: "npm:^4.5.0"
@@ -23171,7 +23065,7 @@ __metadata:
     uc.micro: "npm:^2.1.0"
   bin:
     markdown-it: bin/markdown-it.mjs
-  checksum: 10c0/51d03a244bbacc84aa7229fd784ccc16a76cb853cf93f668c4dfc1e9eb22d03138678e7743accac2304e03151a995068492fde56c7a9fbe6785b4169036cf590
+  checksum: 10c0/d6075ad320731d7fb9f127e496677f4e36cbdba839d7387dabf1f0d07b5c02bdffb46fb3969033817c04e60017e05d4269e4aa74bee58cc0a562a17cc0b6b8ff
   languageName: node
   linkType: hard
 
@@ -24186,13 +24080,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipass@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "minipass@npm:5.0.0"
-  checksum: 10c0/a91d8043f691796a8ac88df039da19933ef0f633e3d7f0d35dcd5373af49131cf2399bfc355f41515dc495e3990369c3858cd319e5c2722b4753c90bf3152462
-  languageName: node
-  linkType: hard
-
 "minipass@npm:^5.0.0 || ^6.0.2 || ^7.0.0, minipass@npm:^7.0.2, minipass@npm:^7.0.3, minipass@npm:^7.0.4, minipass@npm:^7.1.2, minipass@npm:^7.1.3":
   version: 7.1.3
   resolution: "minipass@npm:7.1.3"
@@ -24200,7 +24087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minizlib@npm:^2.1.1, minizlib@npm:^2.1.2":
+"minizlib@npm:^2.1.2":
   version: 2.1.2
   resolution: "minizlib@npm:2.1.2"
   dependencies:
@@ -24226,7 +24113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:^1.0.3, mkdirp@npm:^1.0.4":
+"mkdirp@npm:^1.0.4":
   version: 1.0.4
   resolution: "mkdirp@npm:1.0.4"
   bin:
@@ -30160,21 +30047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^6.1.11, tar@npm:^6.2.1":
-  version: 6.2.1
-  resolution: "tar@npm:6.2.1"
-  dependencies:
-    chownr: "npm:^2.0.0"
-    fs-minipass: "npm:^2.0.0"
-    minipass: "npm:^5.0.0"
-    minizlib: "npm:^2.1.1"
-    mkdirp: "npm:^1.0.3"
-    yallist: "npm:^4.0.0"
-  checksum: 10c0/a5eca3eb50bc11552d453488344e6507156b9193efd7635e98e867fab275d527af53d8866e2370cd09dfe74378a18111622ace35af6a608e5223a7d27fe99537
-  languageName: node
-  linkType: hard
-
-"tar@npm:^7.5.21, tar@npm:^7.5.3, tar@npm:^7.5.7":
+"tar@npm:^7.5.22":
   version: 7.5.22
   resolution: "tar@npm:7.5.22"
   dependencies:
@@ -30759,7 +30632,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.5.0, tslib@npm:^2.6.0, tslib@npm:^2.6.2, tslib@npm:^2.8.0, tslib@npm:^2.8.1":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.5.0, tslib@npm:^2.6.0, tslib@npm:^2.6.2, tslib@npm:^2.6.3, tslib@npm:^2.8.0, tslib@npm:^2.8.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62

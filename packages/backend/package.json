@@ -46,7 +46,6 @@
     "@platform-boutique/backstage-plugin-hubble-backend": "file:../../vendor/platform-boutique-backstage-plugin-hubble-backend-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-policies-backend": "file:../../vendor/platform-boutique-backstage-plugin-policies-backend-0.1.0.tgz",
     "@platform-boutique/backstage-plugin-releases-backend": "file:../../vendor/platform-boutique-backstage-plugin-releases-backend-0.1.0.tgz",
-    "@roadiehq/backstage-plugin-argo-cd-backend": "^4.9.0",
     "app": "link:../app",
     "better-sqlite3": "^12.0.0",
     "node-gyp": "^10.0.0",

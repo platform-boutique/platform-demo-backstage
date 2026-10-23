@@ -43,5 +43,5 @@ metadata:
 spec:
   profile:
     displayName: Demo user
-    email: demo@platform-demo.test
+    email: demo@platform-demo.click
   memberOf: [maintainers]

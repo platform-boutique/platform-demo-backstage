@@ -1,5 +1,4 @@
 import { createBackend } from '@backstage/backend-defaults';
-import { argocdServiceFactory } from '@roadiehq/backstage-plugin-argo-cd-backend';
 
 const backend = createBackend();
 
@@ -12,7 +11,7 @@ backend.add(import('@backstage/plugin-proxy-backend'));
 backend.add(import('@backstage/plugin-auth-backend'));
 backend.add(import('./modules/dexSignIn'));
 
-// Software catalog: descriptors from GitHub (production) or the mounted workspace (kind demo)
+// Software catalog: descriptors from the GitHub organisation
 // https://backstage.io/docs/features/software-catalog/
 backend.add(import('@backstage/plugin-catalog-backend'));
 backend.add(import('@backstage/plugin-catalog-backend-module-logs'));
@@ -28,10 +27,6 @@ backend.add(import('@backstage/plugin-techdocs-backend'));
 // Kubernetes: read-only view of workloads
 // https://backstage.io/docs/features/kubernetes/
 backend.add(import('@backstage/plugin-kubernetes-backend'));
-
-// Argo CD (Roadie): talks to Argo CD's API with a read-only token
-backend.add(argocdServiceFactory);
-backend.add(import('@roadiehq/backstage-plugin-argo-cd-backend'));
 
 // Kyverno policy findings per workload and the policy catalog (own plugin, platform-demo-backstage-plugin-policies)
 backend.add(import('@platform-boutique/backstage-plugin-policies-backend'));

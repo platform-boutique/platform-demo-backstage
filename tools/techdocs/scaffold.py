@@ -25,8 +25,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 WORKSPACE = Path(__file__).resolve().parents[4]  # ~/Desktop/platform-demo
 ORG = "platform-boutique"
-GRAFANA = "https://grafana.platform-demo.test"
-ARGOCD = "https://argocd.platform-demo.test"
+GRAFANA = "https://grafana.platform-demo.click"
+ARGOCD = "https://argocd.platform-demo.click"
 
 
 @dataclass
