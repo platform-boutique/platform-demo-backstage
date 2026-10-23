@@ -18,19 +18,23 @@ jobs:
   secrets:
     permissions:
       contents: read
-    uses: platform-boutique/platform-demo-workflows/.github/workflows/secret-scan.yaml@28d80c1d4abd81c1529bf593a874640132692e8a # v2.0.2
+    uses: platform-boutique/platform-demo-workflows/.github/workflows/secret-scan.yaml@aa79eb7ad5f2d7146190e7c61d5de715ce0e42e8 # v3.0.3
 
   image:
     needs: [secrets]
     permissions:
       contents: read
       packages: write
-    uses: platform-boutique/platform-demo-workflows/.github/workflows/docker-build.yaml@28d80c1d4abd81c1529bf593a874640132692e8a # v2.0.2
+    uses: platform-boutique/platform-demo-workflows/.github/workflows/docker-build.yaml@aa79eb7ad5f2d7146190e7c61d5de715ce0e42e8 # v3.0.3
+    with:
+      # The same accepted findings as CI (.trivyignore.yaml, time-boxed): without them the release gate fails on the two advisories
+      # that have no fixed version anywhere, which the pull-request gate already accepted.
+      trivyignores: .trivyignore.yaml
 
   workflows:
     permissions:
       contents: read
-    uses: platform-boutique/platform-demo-workflows/.github/workflows/workflow-lint.yaml@28d80c1d4abd81c1529bf593a874640132692e8a # v2.0.2
+    uses: platform-boutique/platform-demo-workflows/.github/workflows/workflow-lint.yaml@aa79eb7ad5f2d7146190e7c61d5de715ce0e42e8 # v3.0.3
 
   promote:
     if: ${{ startsWith(github.ref, 'refs/tags/v') || inputs.publish }}
@@ -39,7 +43,7 @@ jobs:
       id-token: write # keyless cosign signing
       contents: read
       packages: read
-    uses: platform-boutique/platform-demo-workflows/.github/workflows/docker-promote.yaml@28d80c1d4abd81c1529bf593a874640132692e8a # v2.0.2
+    uses: platform-boutique/platform-demo-workflows/.github/workflows/docker-promote.yaml@aa79eb7ad5f2d7146190e7c61d5de715ce0e42e8 # v3.0.3
     with:
       image-name: platform-demo-backstage
       staged-image: ${{ needs.image.outputs.staged-image }}
