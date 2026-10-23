@@ -33,7 +33,7 @@ flowchart TB
 | **Component** | Something with a repository: the eleven `app-*` repositories, the Helm repository, the shared workflows, the observability stack, the docs, the organisation profile, this portal | Each repository's `catalog-info.yaml` |
 | **API** | The gRPC interface of a service, with its `.proto` rendered in the API tab | The service's `catalog-info.yaml`, `$text` includes the proto |
 | **Resource** | Infrastructure without a repository of its own: the cluster, Argo CD, Kyverno, Dex, Cilium, Hubble, Grafana and its backends, Redis, the registry | `catalog/platform.yaml` |
-| **Group / User** | The organisation and its people | GitHub (production) or `catalog/org.yaml` (local demo) |
+| **Group / User** | The organisation and its people | The GitHub organisation (`githubOrg` provider) |
 
 Components point at their owner (`group:default/maintainers`), their system, what they `dependsOn` and which APIs they provide and
 consume, so the graph answers "what breaks if `product-catalog-service` is down" without anyone drawing it.
@@ -58,12 +58,14 @@ A component only shows a plugin's tab when it carries the annotation that plugin
 
 1. Add `catalog-info.yaml` at the root (copy one from a service of the same kind). Give it the annotations above that apply.
 2. For documentation add `mkdocs.yml` and a `docs/` folder (see [Documentation](techdocs.md)).
-3. Production: nothing else, the next discovery run (15 minutes) finds it. Local demo: add the path to `app-config.kind.yaml`, run `kind/local-source.sh sync`.
+3. Nothing else: the next discovery run (15 minutes) finds it.
 4. If the thing runs in the cluster, add it to `envs/dev/workloads.yaml` and `policies/values.yaml` in the Helm repository as usual.
 
 ## Where the catalog comes from
 
-| Environment | Source | How |
-|---|---|---|
-| Production | The GitHub organisation | `catalog.providers.github` scans every repository for `/catalog-info.yaml` every 15 minutes; `githubOrg` imports teams as groups and members as users (named after their GitHub login) |
-| Local cluster | A small HTTP server on the host | `kind/local-source.sh` serves a staging copy of each descriptor (and the `.proto` files they include) because nothing is pushed. Shared entities and demo users are baked into the image |
+| Source | How |
+|---|---|
+| The GitHub organisation | `catalog.providers.github` scans every repository for `/catalog-info.yaml` every 15 minutes; `githubOrg` imports teams as groups and members as users (named after their GitHub login) |
+| This repository | `catalog/platform.yaml` (domain, systems, infrastructure resources) is read as a URL location from `main` |
+
+Both need `GITHUB_TOKEN` in `backstage-secrets`.

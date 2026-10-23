@@ -1,9 +1,9 @@
-# Base configuration, always loaded. Layers on top of it (see README.md, "Configuration layers"):
-#   app-config.production.yaml  PostgreSQL, Dex single sign-on, in-cluster Kubernetes, TechDocs on disk. Loaded in the image.
+# Base configuration, always loaded. Layers on top of it (see docs/architecture.md, "Configuration layers"):
+#   app-config.production.yaml  PostgreSQL, Dex single sign-on, TechDocs on disk. Loaded in the image.
 #   app-config.github.yaml      catalog discovery and users/teams from the GitHub organisation (needs a GitHub App or token).
-#   app-config.dev.yaml         `yarn start` on a laptop (git-ignored overlay, see README.md).
+#   app-config.local.yaml       optional, git-ignored overlay for `yarn start` on a laptop.
 #
-# Every deployment-specific value is an environment variable with a default for the local platform; nothing secret is in Git.
+# Every deployment-specific value is an environment variable with a default; nothing secret is in Git.
 
 app:
   title: platform-demo portal
@@ -88,7 +88,7 @@ catalog:
   # Everything the platform describes: components, APIs, systems and the resources they run on, plus groups and users.
   rules:
     - allow: [Component, System, API, Resource, Location, Domain, Group, User]
-  # Locations come from the layers (GitHub discovery or the mounted workspace).
+  # Locations come from the layers (app-config.github.yaml: GitHub discovery and catalog/platform.yaml).
 
 proxy:
   endpoints:

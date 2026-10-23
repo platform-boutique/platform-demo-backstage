@@ -4,13 +4,13 @@ What is installed, where its data comes from, and what each one needs from the e
 
 | Plugin | Package | Shows | Data source | Needs on the entity |
 |---|---|---|---|---|
-| Software catalog | `@backstage/plugin-catalog` | Components, APIs, resources, owners, dependency graph | PostgreSQL, filled from `catalog-info.yaml` files | - |
+| Software catalog | `@backstage/plugin-catalog` | Components, APIs, resources, owners, dependency graph | PostgreSQL (RDS), filled from `catalog-info.yaml` files | - |
 | API docs | `@backstage/plugin-api-docs` | The gRPC definitions | `$text` includes in the API entities | `kind: API` |
-| TechDocs | `@backstage/plugin-techdocs` + Mermaid addon | The docs of the repository | Sites published to `/data/docs` | `backstage.io/techdocs-ref` |
+| TechDocs | `@backstage/plugin-techdocs` + Mermaid addon | The docs of the repository | Sites published to `/data/docs` (nothing publishes them on EKS yet) | `backstage.io/techdocs-ref` |
 | Kubernetes | `@backstage/plugin-kubernetes` | Deployments, pods, services, events of the entity | Kubernetes API, read-only ServiceAccount | `backstage.io/kubernetes-label-selector` (or `-id`), `-namespace` |
 | Deployments (own) | `@platform-boutique/backstage-plugin-deployments` (+ backend) | Argo CD sync and health, live revision, history with commit links, owned resources, link to the Application; read-only | Argo CD API **as the signed-in person** (their Dex ID token; Argo CD's RBAC decides) | `argocd/app-name` |
 | Policies (own) | `@platform-boutique/backstage-plugin-policies` (+ backend) | Kyverno pass/fail/warn counts and the failing results for the entity's objects; the catalog of installed policies | `PolicyReport`s and Kyverno policy kinds, read with the read-only ServiceAccount | `backstage.io/kubernetes-label-selector`, `-namespace` |
-| Grafana | `@backstage-community/plugin-grafana` | The service's dashboards, firing alerts, an embedded overview dashboard | Grafana API with a Viewer service account | `grafana/dashboard-selector`, `grafana/overview-dashboard` |
+| Grafana | `@backstage-community/plugin-grafana` | The service's dashboards, firing alerts, an embedded overview dashboard | Grafana API with a Viewer service account (Grafana is not deployed on the cluster at the moment) | `grafana/dashboard-selector`, `grafana/overview-dashboard` |
 | Search | `@backstage/plugin-search` | One search box for entities and documentation | PostgreSQL full-text search | - |
 | Org | `@backstage/plugin-org` | Groups, members, ownership | The catalog | - |
 
@@ -27,16 +27,13 @@ session cookie inside the iframe, and Grafana is configured with `allow_embeddin
 
 ## Custom plugins
 
-Three views have no plugin to install, or none that works with this stack, so each is its own repository with its own pipeline files
+Four views have no plugin to install, or none that works with this stack, so each is its own repository with its own pipeline files
 (the Backstage documentation's recommendation for plugins that are not part of the app). They are consumed as tarballs from `vendor/`
 until there is a package registry.
 
 | Plugin | What it shows | Source of truth | Status |
 |---|---|---|---|
-| `platform-demo-backstage-plugin-hubble` | Network tab and page: flows, drops and why, mutual authentication | Hubble Relay's gRPC API (`GetFlows`) | Working, verified on the local cluster |
-| `platform-demo-backstage-plugin-releases` | Releases tab and page: what Argo CD runs vs. what the Helm repository declares, latest tag | Argo CD Applications (Kubernetes API), the Helm values via the URL reader, GitHub tags | Working; the GitHub tag lookup is configured but disabled locally |
-| `platform-demo-backstage-plugin-policies` | Policies tab and page: Kyverno findings per workload, the policy catalog | `PolicyReport`s and Kyverno policy kinds | Working, verified on the local cluster |
-
-!!! warning "Argo CD tab"
-    The third-party Argo CD plugin's *tab* crashes in this Backstage version (its table fails to mount inside the entity tab layout), so the
-    tab is switched off in `app-config.yaml`. The Argo CD **cards** on the overview page (status, history) work and show the same data.
+| `platform-demo-backstage-plugin-hubble` | Network tab and page: flows, drops and why, mutual authentication | Hubble Relay's gRPC API (`GetFlows`) | Not verified on EKS yet |
+| `platform-demo-backstage-plugin-releases` | Releases tab and page: what Argo CD runs vs. what the Helm repository declares, latest tag | Argo CD Applications (Kubernetes API), the Helm values via the URL reader, GitHub tags | Not verified on EKS yet |
+| `platform-demo-backstage-plugin-policies` | Policies tab and page: Kyverno findings per workload, the policy catalog | `PolicyReport`s and Kyverno policy kinds | Not verified on EKS yet |
+| `platform-demo-backstage-plugin-argocd` | Deployments tab: Argo CD sync and health, history, resources (packages `deployments` and `deployments-backend`) | Argo CD API with the signed-in person's Dex token | Not verified on EKS yet |

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Renders the TechDocs site of every repository that has a catalog-info.yaml with a `backstage.io/techdocs-ref` annotation and
-# lays the output out the way the portal's `local` publisher expects it:  <out>/<namespace>/<kind>/<name>/...
-# The same two steps run in CI for a real deployment (`techdocs-cli generate` + `techdocs-cli publish --publisher-type awsS3`).
+# lays the output out the way TechDocs storage expects it:  <out>/<namespace>/<kind>/<name>/...
+# Publishing the result (for example `techdocs-cli publish --publisher-type awsS3` in CI) is not wired yet, see docs/techdocs.md.
 #
 #   tools/techdocs/build-docs.sh <workspace-root> <out-dir>       e.g.  ~/Desktop/platform-demo  /tmp/techdocs
 #

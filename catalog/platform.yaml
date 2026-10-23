@@ -59,7 +59,7 @@ kind: System
 metadata:
   name: observability
   title: Observability
-  description: Grafana, Mimir, Loki, Tempo, Pyroscope and Alloy - the services push traces, metrics, logs and profiles over OTLP.
+  description: Grafana, Mimir, Loki, Tempo, Pyroscope and Alloy - the services push traces, metrics, logs and profiles over OTLP. The stack is not deployed on the cluster at the moment; it runs as a docker compose project in platform-demo-observability.
 spec:
   owner: group:default/maintainers
   domain: platform-demo

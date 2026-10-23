@@ -3,7 +3,7 @@
 ## The image
 
 `Dockerfile` is a multi-stage build: dependencies (cached by the `package.json` skeletons), then `yarn tsc` and the frontend and backend
-builds, then a runtime stage with only production dependencies on `node:24-trixie-slim`. It runs as the `node` user with a read-only
+builds, then a runtime stage with only production dependencies on the distroless `nodejs24` image. It runs as the `nonroot` user (65532) with a read-only
 root filesystem; the only writable places are `/tmp` and the volume at `/data`. There is no compiler, no Python and no MkDocs in it.
 
 ```bash
@@ -16,23 +16,18 @@ The repository's `ci.yaml` and `release.yaml` call the shared workflows of the o
 repository: secret scan, image build with Trivy scan, workflow lint; and on a `vX.Y.Z` tag the scanned digest is promoted to Docker Hub
 as `mladenovskistefan/platform-demo-backstage` and signed with keyless cosign.
 
-!!! warning "Not run yet"
-    The pipeline files exist but were never executed: nothing was pushed. The first run will tell.
 
 ## First release
 
-The Helm repository declares the image by digest; Kyverno and the Helm CI both require a digest and a valid signature, so the very
-first deployment on a cluster that is not the laptop goes like this:
+The Helm repository declares the image by digest; Kyverno and the Helm CI both require a digest and a valid signature, so a release goes like this:
 
-1. Merge this repository, tag `v0.1.0`, push the tag. The release pipeline publishes and signs the image.
-2. Open the promotion pull request: set `images.backstage.digest` in `envs/dev/values/backstage.yaml` of the Helm repository to the published digest.
+1. Tag a **new** `vX.Y.Z` on `main` and push the tag. The release pipeline scans, publishes and signs the image. A tag whose scan fails publishes nothing and cannot be reused (release tags are protected), so the next attempt always uses a new version.
+2. Open the promotion pull request: set `images.backstage.tag` and `digest` in `envs/dev/values/backstage.yaml` of the Helm repository to the published values.
 3. Merge it. Argo CD deploys the portal.
-
-Until then `images.backstage.digest` is empty in Git, and the local cluster overrides it in the staged copy with the digest of the image you built.
 
 ## Custom plugins
 
-The two plugins live in their own repositories and are consumed as tarballs from `vendor/` until there is a package registry:
+The four plugins live in their own repositories and are consumed as tarballs from `vendor/` until there is a package registry:
 
 ```bash
 # in the plugin repository

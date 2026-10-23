@@ -18,8 +18,8 @@ cannot bring its own CSS; the portal injects the stylesheet into every docs page
 theme's CSS variables, so it follows the light and dark mode, and no external fonts, images or scripts.
 
 !!! note "Previewing"
-    A plain `mkdocs serve` shows the pages without that stylesheet (the hero and tiles are unstyled). Build and publish to the portal
-    (`kind/techdocs-publish.sh`) to see the real thing.
+    A plain `mkdocs serve` shows the pages without that stylesheet (the hero and tiles are unstyled). Only the portal renders the real
+    look, with the published site.
 
 ## Building and publishing
 
@@ -27,15 +27,16 @@ The portal does **not** run MkDocs. Sites are rendered outside and published to 
 (`techdocs.builder: external`). That keeps the image small, means the portal needs no access to source repositories to show
 docs, and is the approach the Backstage project recommends for production.
 
-| Step | Local cluster | Production |
-|---|---|---|
-| Render | `tools/techdocs/build-docs.sh` (MkDocs + `@techdocs/cli generate`) | The same two commands in the repository's pipeline |
-| Publish | `kind/techdocs-publish.sh` copies the sites into the portal's volume | `techdocs-cli publish --publisher-type awsS3` (or GCS/Azure) and `techdocs.publisher` switched to that store |
-| When | By hand, after `kind/up.sh` | On every merge to `main` |
+| Step | How |
+|---|---|
+| Render | `tools/techdocs/build-docs.sh <workspace-root> <out-dir>` (MkDocs + `@techdocs/cli generate`) renders every repository that has a `backstage.io/techdocs-ref` annotation and an `mkdocs.yml`. In CI the same two commands run in the repository's pipeline |
+| Publish | `techdocs-cli publish --publisher-type awsS3` (or GCS/Azure), with `techdocs.publisher` switched to that store |
+| When | On every merge to `main` |
 
 !!! note "Not wired yet"
-    The production publish step is a few lines in the shared workflows and needs the object storage that the AWS phase
-    (`infra/`) creates. Until then the local publisher on a volume is what the portal uses.
+    Nothing publishes TechDocs on EKS. The publish step is a few lines in a CI workflow and needs an S3 bucket plus a role for the
+    pipeline; neither exists yet. Until then the portal's Docs tab has nothing to show: the portal reads sites from the volume at `/data`
+    (the `local` publisher) and that volume is empty.
 
 ## Writing good pages
 
@@ -49,4 +50,4 @@ docs, and is the approach the Backstage project recommends for production.
 
 The eleven `app-*` repositories were generated from their READMEs by `tools/techdocs/scaffold.py` (overview with a dependency
 diagram, API, configuration, container image, Kubernetes, observability, develop and test, known limitations). After the first
-run the generated files are ordinary hand-edited files.
+run the generated files are ordinary hand-edited files; do not run the scaffold again over them without reviewing the diff.
