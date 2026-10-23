@@ -16,7 +16,6 @@ rendered in the portal itself (Docs tab of this component):
 | [Documentation (TechDocs)](docs/techdocs.md) | How sites are built and published |
 | [Plugins](docs/plugins.md) | What is installed and what it needs |
 | [Configuration](docs/configuration.md) | Environment variables and where to change what |
-| [Run it locally](docs/local.md) | The laptop cluster and `yarn start` |
 | [Build, release, deploy](docs/release.md) | Image, pipeline, first release, upgrading |
 | [Operations](docs/operations.md) | Troubleshooting, rotating secrets, what is not verified |
 
@@ -26,11 +25,11 @@ rendered in the portal itself (Docs tab of this component):
 app-config.yaml                 shared configuration (always loaded)
 app-config.production.yaml      PostgreSQL + Dex sign-in (in the image)
 app-config.github.yaml          production catalog from the GitHub organisation
-catalog/                        shared entities (domain, systems, resources) and the demo org
+catalog/                        shared entities (domain, systems, resources)
 packages/app                    the frontend (sign-in page, sidebar)
 packages/backend                the backend (modules, the Dex sign-in resolver)
 vendor/                         our own plugins as tarballs (until there is a package registry)
-tools/techdocs/                 scaffold, shared stylesheet, build script for the documentation sites
+tools/techdocs/                 scaffold for the service sites, shared stylesheet, build script for the documentation sites
 Dockerfile                      the multi-stage image build
 ```
 
@@ -43,4 +42,5 @@ portal and live in their own repositories: `platform-demo-backstage-plugin-hubbl
 docker build -t platform-demo-backstage:dev .          # the image
 ```
 
-The portal runs on EKS at <https://backstage.platform-demo.click> (single sign-on through Dex with GitHub); its database is Amazon RDS.
+The portal is deployed to EKS by Argo CD at <https://backstage.platform-demo.click> (single sign-on through Dex with GitHub); its
+database is Amazon RDS. The EKS platform is merged but has not been deployed or verified yet. There is no local cluster any more.

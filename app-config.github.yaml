@@ -1,7 +1,7 @@
 # Production catalog source: everything comes from the GitHub organisation, nothing is listed by hand.
 #  - every repository of the organisation is scanned for /catalog-info.yaml (topics are not required)
 #  - users and teams are read from the organisation (teams become Groups, members become Users named after their login)
-# Needs GITHUB_TOKEN (fine-grained token or, preferred, a GitHub App: see README.md, "GitHub access").
+# Needs GITHUB_TOKEN (fine-grained token or, preferred, a GitHub App: see docs/sso.md, "Going live with GitHub").
 
 integrations:
   github:
