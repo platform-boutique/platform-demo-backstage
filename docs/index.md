@@ -28,11 +28,10 @@ about it, and how to use it. Everyone signs in once, with their GitHub account, 
 | Piece | Repository | What it is |
 |---|---|---|
 | The portal | `platform-demo-backstage` (this one) | The Backstage app: configuration, backend modules, image, catalog of shared entities |
-| Charts | `platform-demo-helm` → `backstage/`, `dex/` | Deployment of the portal, its database and Dex |
-| Local bootstrap | `platform-demo-helm` → `kind/` | `up.sh`, secrets, tokens, TechDocs publishing |
+| Charts | `platform-demo-helm` → `backstage/`, `dex/` | Deployment of the portal and Dex (the database is Amazon RDS, built by infra-terraform) |
 | Every other repository | `catalog-info.yaml`, `mkdocs.yml`, `docs/` | What makes it appear here |
 
 !!! info "Status"
-    The portal runs on the local kind cluster. Things that need the organisation's GitHub settings (the OAuth App for the real
+    The portal is deployed to EKS by Argo CD; nothing of it has run on EKS yet. Things that need the organisation's GitHub settings (the OAuth App for the real
     login, a GitHub token or App for catalog discovery) are configured and documented but were not exercised: see
     [Single sign-on](sso.md#going-live-with-github) and [Operations](operations.md#not-verified-yet).

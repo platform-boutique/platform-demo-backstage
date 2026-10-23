@@ -11,7 +11,7 @@ backend.add(import('@backstage/plugin-proxy-backend'));
 backend.add(import('@backstage/plugin-auth-backend'));
 backend.add(import('./modules/dexSignIn'));
 
-// Software catalog: descriptors from GitHub (production) or the mounted workspace (kind demo)
+// Software catalog: descriptors from the GitHub organisation
 // https://backstage.io/docs/features/software-catalog/
 backend.add(import('@backstage/plugin-catalog-backend'));
 backend.add(import('@backstage/plugin-catalog-backend-module-logs'));

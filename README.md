@@ -26,7 +26,6 @@ rendered in the portal itself (Docs tab of this component):
 app-config.yaml                 shared configuration (always loaded)
 app-config.production.yaml      PostgreSQL + Dex sign-in (in the image)
 app-config.github.yaml          production catalog from the GitHub organisation
-app-config.kind.yaml            local demo: catalog from the local source server
 catalog/                        shared entities (domain, systems, resources) and the demo org
 packages/app                    the frontend (sign-in page, sidebar)
 packages/backend                the backend (modules, the Dex sign-in resolver)
@@ -35,14 +34,13 @@ tools/techdocs/                 scaffold, shared stylesheet, build script for th
 Dockerfile                      the multi-stage image build
 ```
 
-Deployment lives in `platform-demo-helm` (charts `backstage/` and `dex/`, the `kind/` bootstrap). Three plugins are written for this
+Deployment lives in `platform-demo-helm` (charts `backstage/` and `dex/`; Argo CD deploys them to EKS). Three plugins are written for this
 portal and live in their own repositories: `platform-demo-backstage-plugin-hubble`, `-releases` and `-policies`.
 
 ## Quick start
 
 ```bash
 docker build -t platform-demo-backstage:dev .          # the image
-cd ../../deploy/platform-demo-helm && LOCAL_SOURCE=1 kind/up.sh   # the whole platform on a laptop, deployed from the working tree
 ```
 
-Then <https://backstage.platform-demo.test>; see [Run it locally](docs/local.md) for the hostnames and the demo login.
+The portal runs on EKS at <https://backstage.platform-demo.click> (single sign-on through Dex with GitHub); its database is Amazon RDS.

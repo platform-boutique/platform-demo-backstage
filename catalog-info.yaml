@@ -14,8 +14,8 @@ metadata:
     argocd/app-name: dev-backstage
   tags: [backstage, typescript, portal]
   links:
-    - { url: "https://backstage.platform-demo.test", title: Portal, icon: web }
-    - { url: "https://argocd.platform-demo.test/applications/argocd/dev-backstage", title: Argo CD, icon: dashboard }
+    - { url: "https://backstage.platform-demo.click", title: Portal, icon: web }
+    - { url: "https://argocd.platform-demo.click/applications/argocd/dev-backstage", title: Argo CD, icon: dashboard }
 spec:
   type: website
   lifecycle: experimental
@@ -26,4 +26,4 @@ spec:
     - resource:default/argocd
     - resource:default/kyverno
     - resource:default/grafana
-    - resource:default/platform-local-cluster
+    - resource:default/platform-demo-cluster

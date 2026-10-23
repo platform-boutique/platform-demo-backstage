@@ -53,6 +53,9 @@ COPY --from=build --chown=node:node /app/packages/backend/dist/bundle.tar.gz ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 COPY --chown=node:node app-config*.yaml ./
 COPY --chown=node:node catalog ./catalog
+# Amazon RDS certificate authorities (public, https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem): the database is RDS and
+# its certificate is signed by them, not by the CAs in the distroless base image. Refresh the file when AWS rotates the CAs.
+COPY --chown=node:node certs/rds-global-bundle.pem ./certs/rds-global-bundle.pem
 # yarn is not needed to run the backend, and neither is its cache
 RUN rm -rf .yarn .yarnrc.yml /home/node/.yarn
 USER root
@@ -63,6 +66,7 @@ RUN mkdir -p /data && chown 65532:65532 /data
 FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:59c479c9b8c123e66047315c968aa2d35e31ae5149c856e4110a79c8b3563f0b
 ENV NODE_ENV=production \
     NODE_OPTIONS="--max-old-space-size=768" \
+    NODE_EXTRA_CA_CERTS=/app/certs/rds-global-bundle.pem \
     TECHDOCS_CACHE=/data
 WORKDIR /app
 COPY --from=runtime-prep --chown=65532:65532 /app ./

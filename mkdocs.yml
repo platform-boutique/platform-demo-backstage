@@ -10,7 +10,6 @@ nav:
   - Documentation (TechDocs): techdocs.md
   - Plugins: plugins.md
   - Configuration: configuration.md
-  - Run it locally: local.md
   - Build, release, deploy: release.md
   - Operations: operations.md
 theme:

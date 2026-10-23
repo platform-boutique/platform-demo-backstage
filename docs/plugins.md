@@ -22,7 +22,7 @@ What is installed, where its data comes from, and what each one needs from the e
 | Kyverno | **Own plugin** (tried TeraSky's first: its frontend sends an entity without `kind`, which the stock Kubernetes backend refuses with 403, so it never loaded) | Policy Reporter's plugin (beta); its UI is not needed because the reports show here |
 | Grafana | The community plugin (the successor of `@k-phoen/backstage-plugin-grafana`, which is barely maintained) | Embedding by hand with an iframe component |
 
-Grafana embedding works because both applications live under `platform-demo.test` (same site), so the browser sends Grafana's
+Grafana embedding works because both applications live under `platform-demo.click` (same site), so the browser sends Grafana's
 session cookie inside the iframe, and Grafana is configured with `allow_embedding`.
 
 ## Custom plugins

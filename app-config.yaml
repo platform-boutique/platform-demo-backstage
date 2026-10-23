@@ -1,7 +1,6 @@
 # Base configuration, always loaded. Layers on top of it (see README.md, "Configuration layers"):
 #   app-config.production.yaml  PostgreSQL, Dex single sign-on, in-cluster Kubernetes, TechDocs on disk. Loaded in the image.
 #   app-config.github.yaml      catalog discovery and users/teams from the GitHub organisation (needs a GitHub App or token).
-#   app-config.kind.yaml        the local kind demo: catalog from the mounted workspace instead of GitHub.
 #   app-config.dev.yaml         `yarn start` on a laptop (git-ignored overlay, see README.md).
 #
 # Every deployment-specific value is an environment variable with a default for the local platform; nothing secret is in Git.
@@ -29,7 +28,7 @@ backend:
   csp:
     connect-src: ["'self'", 'http:', 'https:']
     # Grafana panels are embedded in entity pages (Grafana plugin) and Hubble/Argo links open in new tabs.
-    frame-src: ["'self'", '${GRAFANA_URL:-https://grafana.platform-demo.test}']
+    frame-src: ["'self'", '${GRAFANA_URL:-https://grafana.platform-demo.click}']
   cors:
     origin: ${APP_BASE_URL:-http://localhost:3000}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
@@ -48,7 +47,7 @@ integrations:
 argocd:
   # Where people click through to the Argo CD UI ("Open in Argo CD" on the Deployments tab). The portal itself talks to Argo CD's API
   # only with the signed-in person's own Dex token (see `deployments`): there is no shared token and no local Argo CD account.
-  baseUrl: ${ARGOCD_URL:-https://argocd.platform-demo.test}
+  baseUrl: ${ARGOCD_URL:-https://argocd.platform-demo.click}
 
 deployments:
   # Where the backend reaches Argo CD's API for the Deployments tab. It sends the signed-in person's Dex ID token, not a token of its own.
@@ -56,7 +55,7 @@ deployments:
 
 grafana:
   # Where the browser reaches Grafana (links and embedded dashboards) and where the backend reaches it for the alerts list.
-  domain: ${GRAFANA_URL:-https://grafana.platform-demo.test}
+  domain: ${GRAFANA_URL:-https://grafana.platform-demo.click}
   unifiedAlerting: true
 
 hubble:
@@ -108,7 +107,7 @@ kubernetes:
   clusterLocatorMethods:
     - type: config
       clusters:
-        - name: ${CLUSTER_NAME:-platform-local}
+        - name: ${CLUSTER_NAME:-platform-demo}
           url: ${KUBERNETES_API_URL:-https://kubernetes.default.svc}
           # No serviceAccountToken / caData on purpose: in a pod the backend reads the (rotating) projected token and the
           # CA of the pod's own ServiceAccount at request time. Its ClusterRole is read-only (platform-demo-helm, backstage chart).
